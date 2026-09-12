@@ -3,32 +3,42 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "Why CLT Gems exists — resources, invoices, and directory for underserved Charlotte businesses.",
+  description: "AI Bloom tools for underserved Charlotte businesses — directory, resources, pricing, invoices.",
 };
 
 export default function AboutPage() {
   return (
     <div className="container-page py-10 sm:py-12 max-w-3xl">
-      <h1 className="font-display text-3xl font-extrabold text-ink">About CLT Gems</h1>
+      <p className="text-xs font-bold uppercase tracking-wide text-gem">AI Bloom</p>
+      <h1 className="mt-2 font-display text-3xl font-extrabold text-ink">About these tools</h1>
       <div className="mt-6 space-y-5 text-stone-700 leading-relaxed">
         <p>
-          <strong className="text-ink">CLT Gems</strong> is a simple Charlotte resource hub for
-          underserved, small, mobility, HUB, minority-owned, and certified contractors and operators.
-          The goal is practical help — not a bloated SaaS.
+          <strong className="text-ink">AI Bloom</strong> makes practical AI-era tools simple —
+          learn, try, grow. This Charlotte-facing toolkit helps underserved, small, mobility, minority-owned,
+          and certified contractors and operators get found, get certified, price work, and get paid.
         </p>
         <p>
           Why put <Link href="/directory" className="font-semibold text-gem underline underline-offset-2">directory</Link>,{" "}
-          <Link href="/resources" className="font-semibold text-gem underline underline-offset-2">grants & resources</Link>, and an{" "}
+          <Link href="/resources" className="font-semibold text-gem underline underline-offset-2">resources</Link>,{" "}
+          <Link href="/price" className="font-semibold text-gem underline underline-offset-2">job pricing</Link>, and an{" "}
           <Link href="/invoices" className="font-semibold text-gem underline underline-offset-2">invoice library</Link>{" "}
           together? Getting certified and finding opportunities matters — and so does getting paid.
-          Clean Word/PDF invoices that work on a library PC close that loop.
+          Clean Word/PDF invoices that work on a phone or library PC close that loop.
+        </p>
+        <p>
+          Local product nickname <em>CLT Gems</em> still describes the Charlotte story in places —
+          the chrome (header + footer) is AI Bloom for consistency with aibloom.agency.
         </p>
         <p>
           We keep messaging honest: this MVP ships with clearly labeled <em>demo listings</em>, not
           inflated “1,700 live results” claims. Replace sample data with your verified directory when ready.
         </p>
-        <p className="text-sm text-muted">
-          Powered quietly by AI Bloom in the footer — CLT Gems is the front door for Charlotte operators.
+        <p className="rounded-xl border border-border bg-white p-4">
+          <span className="font-display font-extrabold text-gem-dark">AI Bloom</span>
+          <br />
+          <span className="font-semibold text-ink">AI made simple.</span>
+          <br />
+          <span className="text-muted tracking-wide">Learn. Try. Grow.</span>
         </p>
       </div>
     </div>

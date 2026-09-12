@@ -16,7 +16,8 @@ export default function InvoiceBuilderPage() {
       </Link>
       <h1 className="mt-3 font-display text-3xl font-extrabold text-ink">Invoice builder</h1>
       <p className="mt-2 text-muted max-w-2xl">
-        Guest mode — edit, preview, download. Wipe your session when finished on a shared computer.
+        Guest mode — edit, preview, download PDF/Word, or email/share. Credits only after a successful download.
+        Wipe your session when finished on a shared computer.
       </p>
       <div className="mt-6">
         <Suspense fallback={<p className="text-sm text-muted p-6">Loading builder…</p>}>

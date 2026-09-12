@@ -1,14 +1,17 @@
-# CLT Gems
+# AI Bloom · CLT Gems tools
 
-Charlotte NC resource hub for underserved / small / mobility / HUB / minority-owned / certified contractors and operators.
+Charlotte NC toolkit for underserved / small / mobility / certified contractors and operators — shipped as **AI Bloom** (aibloom.agency).
 
 - **Directory** — filterable demo listings
-- **Resources** — grants, city/county, certification pointers
-- **Invoice Library** — 8 formats, guest builder, PDF + DOCX, session wipe
+- **Resources** — certification, city contracting, SBA, workforce, getting paid
+- **Price a job** — ballpark cleaning & construction estimates, invoice handoff
+- **Invoice Library** — 8 formats, guest builder, PDF + DOCX, email/share, session wipe
 - **Add business** — MVP form stub
 - **About**
 
-See [DEPLOY.md](./DEPLOY.md) for local run, GitHub, and one-shot Replit import.
+Credits for PDF/Word exports are deducted **only after a successful download**.
+
+See [DEPLOY.md](./DEPLOY.md) for local run, GitHub, and Replit import.
 
 ```bash
 npm install && npm run dev

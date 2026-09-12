@@ -6,17 +6,17 @@ import { FormatCard } from "@/components/invoices/FormatCard";
 
 export const metadata: Metadata = {
   title: "Invoice Library",
-  description: "CLT Gems Docs — guest invoice builder with Word and PDF export, library-PC session wipe.",
+  description: "Guest invoice builder with Word and PDF export, email/share, library-PC session wipe.",
 };
 
 export default function InvoicesPage() {
   return (
     <div className="container-page py-10 sm:py-12">
-      <p className="text-xs font-bold uppercase tracking-wide text-gem">CLT Gems Docs</p>
+      <p className="text-xs font-bold uppercase tracking-wide text-gem">AI Bloom · Invoices</p>
       <h1 className="mt-1 font-display text-3xl font-extrabold text-ink">Invoice Library</h1>
       <p className="mt-2 max-w-2xl text-muted leading-relaxed">
-        Eight practical formats. Build as a guest, preview live, download Word (.docx) or PDF.
-        Free useful tier first — no account required.
+        Eight practical formats. Build as a guest, preview live, download Word (.docx) or PDF, or email/share from your phone.
+        Free useful tier first — no account required. Credits only after a successful download.
       </p>
 
       <div className="mt-6 flex flex-wrap gap-3">

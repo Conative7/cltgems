@@ -2,6 +2,7 @@ import { jsPDF } from "jspdf";
 import { calcTotals, formatMoney, lineItemAmount } from "../calculations";
 import { getFormat } from "../formats";
 import type { InvoiceData } from "../types";
+import { invoiceFilename, triggerBlobDownload } from "./download";
 
 function hexToRgb(hex: string): [number, number, number] {
   const h = hex.replace("#", "");
@@ -9,7 +10,7 @@ function hexToRgb(hex: string): [number, number, number] {
   return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
 }
 
-export function downloadInvoicePdf(invoice: InvoiceData): void {
+function buildPdf(invoice: InvoiceData): { blob: Blob; filename: string } {
   const format = getFormat(invoice.formatId);
   const accent = format?.accent ?? "#2563eb";
   const [ar, ag, ab] = hexToRgb(accent);
@@ -22,11 +23,9 @@ export function downloadInvoicePdf(invoice: InvoiceData): void {
 
   const label = (en: string, es: string) => (bilingual ? en + " / " + es : en);
 
-  // Accent bar
   doc.setFillColor(ar, ag, ab);
   doc.rect(0, 0, pageW, 8, "F");
 
-  // Title
   doc.setFont("helvetica", "bold");
   doc.setFontSize(22);
   doc.setTextColor(15, 23, 42);
@@ -37,7 +36,6 @@ export function downloadInvoicePdf(invoice: InvoiceData): void {
   doc.setTextColor(100, 116, 139);
   doc.text(format?.name ?? "Invoice", margin, y + 42);
 
-  // Meta right
   const metaX = pageW - margin;
   doc.setFont("helvetica", "bold");
   doc.setFontSize(10);
@@ -50,7 +48,6 @@ export function downloadInvoicePdf(invoice: InvoiceData): void {
 
   y += 80;
 
-  // From / Bill to
   const colW = (pageW - margin * 2 - 24) / 2;
   doc.setFont("helvetica", "bold");
   doc.setFontSize(9);
@@ -94,7 +91,6 @@ export function downloadInvoicePdf(invoice: InvoiceData): void {
   }
   y += maxLines * 12 + 28;
 
-  // Table header
   doc.setFillColor(248, 250, 252);
   doc.rect(margin, y - 12, pageW - margin * 2, 22, "F");
   doc.setFont("helvetica", "bold");
@@ -133,7 +129,6 @@ export function downloadInvoicePdf(invoice: InvoiceData): void {
   doc.line(margin, y, pageW - margin, y);
   y += 20;
 
-  // Totals
   const totalsX = pageW - margin - 180;
   const valueX = pageW - margin;
   const rows: [string, string, boolean?][] = [
@@ -184,13 +179,25 @@ export function downloadInvoicePdf(invoice: InvoiceData): void {
     doc.text(notes, margin, y);
   }
 
-  // Footer
   doc.setFontSize(8);
   doc.setTextColor(148, 163, 184);
-  doc.text("Formatted with CLT Gems Invoice Library — library-PC friendly Word + PDF", pageW / 2, 760, {
+  doc.text("AI Bloom — AI made simple. Learn. Try. Grow. · aibloom.agency", pageW / 2, 760, {
     align: "center",
   });
 
-  const filename = (invoice.invoiceNumber || "invoice").replace(/[^a-zA-Z0-9-_]/g, "_") + ".pdf";
-  doc.save(filename);
+  const filename = invoiceFilename(invoice.invoiceNumber, "pdf");
+  const blob = doc.output("blob");
+  return { blob, filename };
+}
+
+/** Build PDF blob without downloading (for share / email helpers). */
+export function buildInvoicePdfBlob(invoice: InvoiceData): { blob: Blob; filename: string } {
+  return buildPdf(invoice);
+}
+
+/** Generate and download PDF. Resolves only after a download is triggered successfully. */
+export async function downloadInvoicePdf(invoice: InvoiceData): Promise<{ blob: Blob; filename: string }> {
+  const { blob, filename } = buildPdf(invoice);
+  await triggerBlobDownload(blob, filename);
+  return { blob, filename };
 }

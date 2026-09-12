@@ -3,112 +3,102 @@ export interface ResourceGem {
   title: string;
   summary: string;
   href: string;
+  cta: string;
   tags: string[];
   verifyNote?: boolean;
-  group: "Grants & aid" | "City & county" | "Workforce & certification" | "Getting paid";
+  group: "Certification & contracting" | "City & county" | "Capital & counseling" | "Workforce" | "Getting paid";
 }
 
 export const RESOURCE_GEMS: ResourceGem[] = [
   {
     id: "ncsbe",
-    title: "NC Statewide Uniform Certification (NCSBE / HUB)",
-    summary: "Apply or renew Historically Underutilized Business certification with the State of North Carolina.",
-    href: "https://ncadmin.nc.gov/businesses/historically-underutilized-businesses-hub",
-    tags: ["HUB", "Certification"],
-    group: "Workforce & certification",
+    title: "NC Small Business Enterprise (NCSBE)",
+    summary:
+      "State small-business certification pathway after the HUB office closed (July 2026). Check current NCSBE status, transition FAQs, and contact NCSBE@doa.nc.gov.",
+    href: "https://www.doa.nc.gov/divisions/small-business-enterprise-program",
+    cta: "Open NCSBE program",
+    tags: ["NCSBE", "State", "Certification"],
+    verifyNote: true,
+    group: "Certification & contracting",
   },
   {
-    id: "meck-vendor",
-    title: "Mecklenburg County Vendor Opportunities",
-    summary: "County purchasing and vendor registration pathways for local contractors and suppliers.",
-    href: "https://www.mecknc.gov/",
-    tags: ["Procurement", "County"],
-    verifyNote: true,
+    id: "charlotte-supplier",
+    title: "City of Charlotte — Supplier registration",
+    summary:
+      "Register as a city supplier to get purchase orders, payments, and visibility for contracting opportunities.",
+    href: "https://www.charlottenc.gov/Growth-and-Development/Doing-Business/Vendor-Registration",
+    cta: "Register as a supplier",
+    tags: ["Procurement", "City"],
     group: "City & county",
   },
   {
-    id: "charlotte-biz",
-    title: "City of Charlotte — Economic Development",
-    summary: "City programs, business resources, and economic development contacts for Charlotte operators.",
-    href: "https://www.charlottenc.gov/",
-    tags: ["City", "Small business"],
-    verifyNote: true,
-    group: "City & county",
+    id: "charlotte-cbi",
+    title: "Charlotte Business INClusion — Get certified",
+    summary:
+      "City MWSBE / small business certification for greater exposure on Charlotte contracts. Register as a supplier first, then apply.",
+    href: "https://www.charlottenc.gov/City-Government/Departments/Contracting-and-Procurement/CBI/Get-Small-Business-Certified",
+    cta: "Start certification",
+    tags: ["MWSBE", "SBE", "City"],
+    group: "Certification & contracting",
   },
   {
-    id: "skilled-to-build",
-    title: "Skilled to Build (workforce / construction pathways)",
-    summary: "Workforce and construction career pathway programs referenced by local partners — confirm current cohorts on the official program site.",
-    href: "https://www.charlottenc.gov/",
-    tags: ["Workforce", "Construction"],
-    verifyNote: true,
-    group: "Workforce & certification",
+    id: "charlotte-contracts",
+    title: "City of Charlotte — Contract opportunities",
+    summary:
+      "Active and planned city solicitations in one place (Bonfire hub + city portal).",
+    href: "https://www.charlottenc.gov/Growth-and-Development/Doing-Business/Contract-Opportunities",
+    cta: "Browse opportunities",
+    tags: ["Bids", "Procurement"],
+    group: "City & county",
   },
   {
     id: "sba-nc",
     title: "SBA North Carolina District",
-    summary: "Federal small-business counseling, lending partners, and contracting readiness resources.",
+    summary:
+      "Federal counseling, lending partners, and contracting readiness. Charlotte main office on Fairview Road (appointments).",
     href: "https://www.sba.gov/district/north-carolina",
-    tags: ["SBA", "Capital"],
-    group: "Grants & aid",
-  },
-  {
-    id: "nc-commerce",
-    title: "NC Department of Commerce — Business Resources",
-    summary: "State-level economic development, small business, and workforce pointers.",
-    href: "https://www.commerce.nc.gov/",
-    tags: ["State", "Development"],
-    group: "Grants & aid",
+    cta: "Visit SBA NC",
+    tags: ["SBA", "Capital", "Counseling"],
+    group: "Capital & counseling",
   },
   {
     id: "score-charlotte",
-    title: "SCORE Mentoring (Charlotte area)",
-    summary: "Free mentor matching for business plans, marketing, and operations — useful before chasing capital.",
-    href: "https://www.score.org/",
+    title: "SCORE Charlotte — free mentors",
+    summary:
+      "Free mentor matching for business plans, marketing, operations, and cash-flow habits — useful before chasing capital.",
+    href: "https://www.score.org/charlotte/find-or-become-a-mentor/local-mentors",
+    cta: "Find a mentor",
     tags: ["Mentoring", "Free"],
-    verifyNote: true,
-    group: "Workforce & certification",
+    group: "Capital & counseling",
   },
   {
     id: "charlotte-works",
-    title: "Charlotte Works / local workforce boards",
-    summary: "Job seeker and employer workforce services; useful for staffing and training partnerships.",
+    title: "Charlotte Works",
+    summary:
+      "Mecklenburg workforce board — hiring help, training partners, and employer services.",
     href: "https://www.charlotteworks.com/",
+    cta: "Explore workforce help",
     tags: ["Workforce", "Hiring"],
-    verifyNote: true,
-    group: "Workforce & certification",
-  },
-  {
-    id: "dbe-ncdot",
-    title: "NCDOT Disadvantaged Business Enterprise (DBE)",
-    summary: "Transportation-related DBE certification and contracting information for NC firms.",
-    href: "https://www.ncdot.gov/",
-    tags: ["DBE", "Transportation"],
-    verifyNote: true,
-    group: "Workforce & certification",
+    group: "Workforce",
   },
   {
     id: "irs-ein",
     title: "IRS — Get an EIN (free)",
-    summary: "Official free EIN application so you can invoice and bank as a business without paying a middleman.",
+    summary:
+      "Official free Employer Identification Number so you can invoice and bank as a business — never pay a middleman for this.",
     href: "https://www.irs.gov/businesses/small-businesses-self-employed/apply-for-an-employer-identification-number-ein-online",
-    tags: ["Tax ID", "Getting paid"],
+    cta: "Apply for EIN",
+    tags: ["Tax ID", "Free"],
     group: "Getting paid",
   },
   {
-    id: "clt-traffic",
-    title: "Charlotte traffic & road conditions (NCDOT)",
-    summary: "Check incidents and road work before job runs — external live traffic resource.",
-    href: "https://drivenc.gov/",
-    tags: ["Traffic", "Field ops"],
-    group: "City & county",
-  },
-  {
-    id: "invoice-tip",
-    title: "CLT Gems Invoice Library",
-    summary: "Build Word + PDF invoices on a library PC, then wipe your session before you leave.",
+    id: "invoice-builder",
+    title: "Invoice builder (this site)",
+    summary:
+      "Build a clear Word or PDF invoice on phone or library PC, email/share it, then wipe your session when done.",
     href: "/invoices",
-    tags: ["Invoices", "Docs"],
+    cta: "Build an invoice",
+    tags: ["Invoices", "PDF", "Word"],
     group: "Getting paid",
   },
 ];

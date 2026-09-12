@@ -19,8 +19,8 @@ const GEMS = [
   },
   {
     href: "/resources",
-    title: "Grants & aid",
-    desc: "Curated city, county, state, and workforce pointers — short cards, real program names where known.",
+    title: "Resources",
+    desc: "Certification, city contracting, SBA, workforce, and getting-paid links — short cards, real next steps.",
     icon: HandCoins,
   },
   {
@@ -49,7 +49,7 @@ export default function HomePage() {
       <section className="border-b border-border bg-gradient-to-b from-gem-mist to-warm">
         <div className="container-page py-14 sm:py-20">
           <p className="inline-flex items-center rounded-full bg-white border border-border px-3 py-1 text-xs font-bold text-gem-dark">
-            Charlotte NC · Practical resources
+            AI Bloom · Charlotte NC · Practical tools
           </p>
           <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight">
             A gem of resources for Charlotte businesses that are building, getting certified, and getting paid.

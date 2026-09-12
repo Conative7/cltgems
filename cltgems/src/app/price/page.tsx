@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function PricePage() {
   return (
     <div className="container-page py-10 sm:py-12">
-      <p className="text-xs font-bold uppercase tracking-wide text-gem">Price a job · CLT Gems</p>
+      <p className="text-xs font-bold uppercase tracking-wide text-gem">Price a job · AI Bloom</p>
       <h1 className="mt-1 font-display text-3xl sm:text-4xl font-extrabold text-ink max-w-3xl leading-tight">
         Stop guessing. Price the job in your palm — then invoice like a pro.
       </h1>

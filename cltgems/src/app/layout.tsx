@@ -16,12 +16,12 @@ const nunito = Nunito({
 
 export const metadata: Metadata = {
   title: {
-    default: "CLT Gems — Charlotte resources for underserved businesses",
-    template: "%s | CLT Gems",
+    default: "AI Bloom — Charlotte tools for underserved businesses",
+    template: "%s | AI Bloom",
   },
   description:
-    "Practical resources for Charlotte businesses that are underserved, building, getting certified, and getting paid — directory, grants pointers, and invoice Word/PDF tools.",
-  metadataBase: new URL("https://cltgems.com"),
+    "AI made simple. Learn. Try. Grow. Practical Charlotte resources — directory, certification pointers, job pricing, and invoice Word/PDF tools.",
+  metadataBase: new URL("https://aibloom.agency"),
 };
 
 export default function RootLayout({

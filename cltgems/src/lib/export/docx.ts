@@ -11,10 +11,10 @@ import {
   TextRun as Run,
   WidthType as W,
 } from "docx";
-import { saveAs } from "file-saver";
 import { calcTotals, formatMoney, lineItemAmount } from "../calculations";
 import { getFormat } from "../formats";
 import type { InvoiceData } from "../types";
+import { invoiceFilename, triggerBlobDownload } from "./download";
 
 const noBorder = {
   top: { style: Border.NONE, size: 0, color: "FFFFFF" },
@@ -88,7 +88,7 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
     spacing: { after: 240 },
     children: [
       new Run({
-        text: (format?.name ?? "Invoice") + " — CLT Gems",
+        text: (format?.name ?? "Invoice") + " — AI Bloom",
         size: 16,
         color: "94A3B8",
         font: "Calibri",
@@ -282,7 +282,7 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
       spacing: { before: 400 },
       children: [
         new Run({
-          text: "Formatted with CLT Gems Invoice Library — opens cleanly in Microsoft Word.",
+          text: "AI Bloom — AI made simple. Learn. Try. Grow. · Opens cleanly in Microsoft Word.",
           size: 14,
           color: "94A3B8",
           font: "Calibri",
@@ -306,6 +306,10 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
   });
 
   const blob = await Pack.toBlob(doc);
-  const filename = (invoice.invoiceNumber || "invoice").replace(/[^a-zA-Z0-9-_]/g, "_") + ".docx";
-  saveAs(blob, filename);
+  if (!blob || blob.size <= 0) {
+    throw new Error("Word export produced an empty file");
+  }
+  const filename = invoiceFilename(invoice.invoiceNumber, "docx");
+  await triggerBlobDownload(blob, filename);
 }
+
