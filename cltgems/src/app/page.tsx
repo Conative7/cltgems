@@ -32,7 +32,7 @@ const GEMS = [
   {
     href: "/price",
     title: "Price a job",
-    desc: "Ballpark Low / Target / High for cleaning & construction — then hand off to an invoice draft.",
+    desc: "Stop guessing. Price the job in your palm — then invoice like a pro.",
     icon: Calculator,
   },
   {
