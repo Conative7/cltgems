@@ -13,11 +13,77 @@ export function newLineItem(partial?: Partial<LineItem>): LineItem {
   };
 }
 
+function starterLines(formatId: FormatId): LineItem[] {
+  switch (formatId) {
+    case "consulting-tm":
+      return [
+        newLineItem({
+          description: "Professional services — consulting hours",
+          quantity: 4,
+          unitPrice: 0,
+          unit: "hrs",
+        }),
+      ];
+    case "contractor-job":
+      return [
+        newLineItem({
+          description: "Labor",
+          quantity: 1,
+          unitPrice: 0,
+          unit: "hrs",
+        }),
+        newLineItem({
+          description: "Materials",
+          quantity: 1,
+          unitPrice: 0,
+          unit: "ea",
+        }),
+      ];
+    case "retail-product":
+      return [
+        newLineItem({
+          description: "Product / SKU",
+          quantity: 1,
+          unitPrice: 0,
+          unit: "ea",
+        }),
+      ];
+    case "creative-agency":
+      return [
+        newLineItem({
+          description: "Project milestone",
+          quantity: 1,
+          unitPrice: 0,
+          unit: "ea",
+        }),
+      ];
+    case "nonprofit":
+      return [
+        newLineItem({
+          description: "Program / service fee",
+          quantity: 1,
+          unitPrice: 0,
+          unit: "ea",
+        }),
+      ];
+    default:
+      return [
+        newLineItem({
+          description: "Professional services",
+          quantity: 1,
+          unitPrice: 0,
+          unit: "ea",
+        }),
+      ];
+  }
+}
+
 export function createEmptyInvoice(formatId: FormatId = "classic-service"): InvoiceData {
   const bilingual = formatId === "bilingual-en-es";
   return {
     formatId,
-    invoiceNumber: "INV-" + new Date().getFullYear() + "-" + String(Math.floor(Math.random() * 9000) + 1000),
+    invoiceNumber:
+      "INV-" + new Date().getFullYear() + "-" + String(Math.floor(Math.random() * 9000) + 1000),
     issueDate: todayISO(),
     dueDate: defaultDueDate(30),
     business: {
@@ -37,14 +103,7 @@ export function createEmptyInvoice(formatId: FormatId = "classic-service"): Invo
       cityStateZip: "",
       company: "",
     },
-    lineItems: [
-      newLineItem({
-        description: formatId === "consulting-tm" ? "Consulting hours" : "Service / item",
-        quantity: formatId === "consulting-tm" ? 4 : 1,
-        unitPrice: formatId === "consulting-tm" ? 150 : 0,
-        unit: formatId === "consulting-tm" ? "hrs" : "ea",
-      }),
-    ],
+    lineItems: starterLines(formatId),
     taxRate: 0,
     discountType: "none",
     discountValue: 0,
@@ -61,7 +120,7 @@ export function createDemoInvoice(formatId: FormatId): InvoiceData {
     ...base,
     business: {
       name: "Queen City Services LLC",
-      email: "hello@queencityservices.example",
+      email: "billing@queencityservices.example",
       phone: "(704) 555-0142",
       address: "123 Tryon St, Suite 200",
       cityStateZip: "Charlotte, NC 28202",
@@ -76,40 +135,68 @@ export function createDemoInvoice(formatId: FormatId): InvoiceData {
       address: "88 Freedom Dr",
       cityStateZip: "Charlotte, NC 28208",
     },
-    lineItems: [
-      newLineItem({
-        description:
-          formatId === "retail-product"
-            ? "Starter kit (SKU-100)"
-            : formatId === "contractor-job"
-              ? "Labor — site prep & install"
-              : formatId === "consulting-tm"
-                ? "Strategy session"
-                : formatId === "creative-agency"
-                  ? "Brand refresh — Milestone 1"
-                  : formatId === "nonprofit"
-                    ? "Program facilitation"
-                    : "Professional services",
-        quantity: formatId === "consulting-tm" ? 6 : formatId === "retail-product" ? 3 : 1,
-        unitPrice: formatId === "retail-product" ? 49 : formatId === "consulting-tm" ? 175 : 850,
-        unit: formatId === "consulting-tm" ? "hrs" : formatId === "retail-product" ? "ea" : "project",
-      }),
-      newLineItem({
-        description: formatId === "contractor-job" ? "Materials allowance" : "Follow-up / delivery",
-        quantity: 1,
-        unitPrice: 125,
-        unit: "ea",
-      }),
-    ],
+    lineItems:
+      formatId === "consulting-tm"
+        ? [
+            newLineItem({
+              description: "Strategy consulting",
+              quantity: 6,
+              unitPrice: 175,
+              unit: "hrs",
+            }),
+          ]
+        : formatId === "retail-product"
+          ? [
+              newLineItem({
+                description: "Starter kit (SKU-100)",
+                quantity: 3,
+                unitPrice: 49,
+                unit: "ea",
+              }),
+              newLineItem({
+                description: "Shipping",
+                quantity: 1,
+                unitPrice: 12,
+                unit: "ea",
+              }),
+            ]
+          : formatId === "contractor-job"
+            ? [
+                newLineItem({
+                  description: "Labor — site work",
+                  quantity: 8,
+                  unitPrice: 85,
+                  unit: "hrs",
+                }),
+                newLineItem({
+                  description: "Materials",
+                  quantity: 1,
+                  unitPrice: 220,
+                  unit: "ea",
+                }),
+              ]
+            : formatId === "creative-agency"
+              ? [
+                  newLineItem({
+                    description: "Brand refresh — Milestone 1",
+                    quantity: 1,
+                    unitPrice: 2500,
+                    unit: "ea",
+                  }),
+                ]
+              : [
+                  newLineItem({
+                    description: "Professional services",
+                    quantity: 1,
+                    unitPrice: 850,
+                    unit: "ea",
+                  }),
+                ],
+    // Mecklenburg County, NC combined sales tax example (edit as needed)
     taxRate: 7.25,
     discountType: "none",
     discountValue: 0,
-    notes:
-      formatId === "nonprofit"
-        ? "Thank you for supporting our community mission. This invoice may serve as a contribution acknowledgment where applicable."
-        : formatId === "bilingual-en-es"
-          ? "Gracias por su negocio. / Thank you for your business."
-          : "Thank you for your business. Questions? Reply to this invoice email.",
-    paymentTerms: "Net 30. Accepts ACH, card, or check.",
+    notes: "",
+    paymentTerms: "Net 30 — payment due within 30 days of invoice date. ACH, card, or check accepted.",
   };
 }

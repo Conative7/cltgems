@@ -30,7 +30,7 @@ export function SiteHeader() {
               AI Bloom
             </span>
             <span className="block text-[11px] font-semibold text-muted leading-tight truncate">
-              CLT Gems tools · Charlotte
+              Charlotte · AI made simple
             </span>
           </span>
         </Link>

@@ -2,7 +2,8 @@
 
 import { FormEvent, useState } from "react";
 import { CATEGORIES, CERTIFICATIONS, type Category, type Certification } from "@/data/listings";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Send } from "lucide-react";
+import { FORMSPREE_ID, INBOX, openOutlookDraft, submitViaFormspree } from "@/lib/notifyEmail";
 
 type FormState = {
   name: string;
@@ -28,10 +29,27 @@ const EMPTY: FormState = {
   notes: "",
 };
 
+function buildBody(form: FormState): string {
+  return [
+    "New directory listing request (AI Bloom)",
+    "",
+    "Business: " + form.name,
+    "Category: " + form.category,
+    "Certifications: " + (form.certifications.join(", ") || "—"),
+    "Area: " + (form.area || "—"),
+    "Contact: " + (form.contactName || "—"),
+    "Email: " + (form.email || "—"),
+    "Phone: " + (form.phone || "—"),
+    "Website: " + (form.website || "—"),
+    "Notes: " + (form.notes || "—"),
+  ].join("\n");
+}
+
 export function AddBusinessForm() {
   const [form, setForm] = useState<FormState>(EMPTY);
   const [errors, setErrors] = useState<string[]>([]);
-  const [saved, setSaved] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "sent">("idle");
+  const [mode, setMode] = useState<"formspree" | "outlook">("outlook");
 
   function toggleCert(c: Certification) {
     setForm((prev) => ({
@@ -53,81 +71,73 @@ export function AddBusinessForm() {
     return e;
   }
 
-  function onSubmit(e: FormEvent) {
+  async function onSubmit(e: FormEvent) {
     e.preventDefault();
     const errs = validate();
     setErrors(errs);
-    if (errs.length) {
-      setSaved(false);
-      return;
+    if (errs.length) return;
+
+    const subject = "AI Bloom — add business: " + form.name.trim();
+    const body = buildBody(form);
+    setStatus("sending");
+
+    if (FORMSPREE_ID) {
+      try {
+        const ok = await submitViaFormspree({
+          form: "add-business",
+          business: form.name.trim(),
+          category: String(form.category),
+          certifications: form.certifications.join(", "),
+          area: form.area,
+          contactName: form.contactName,
+          email: form.email,
+          phone: form.phone,
+          website: form.website,
+          notes: form.notes,
+          message: body,
+          _subject: subject,
+          _replyto: form.email || INBOX,
+        });
+        if (!ok) throw new Error("fail");
+        setMode("formspree");
+        setStatus("sent");
+        return;
+      } catch {
+        /* Outlook fallback */
+      }
     }
 
-    const payload = {
-      ...form,
-      submittedAt: new Date().toISOString(),
-    };
-    try {
-      const key = "cltgems_add_submissions";
-      const prev = JSON.parse(localStorage.getItem(key) || "[]") as unknown[];
-      prev.unshift(payload);
-      localStorage.setItem(key, JSON.stringify(prev.slice(0, 25)));
-    } catch {
-      /* ignore quota */
-    }
-    setSaved(true);
+    openOutlookDraft(subject, body);
+    setMode("outlook");
+    setStatus("sent");
   }
 
-  function openMailto() {
-    const subject = encodeURIComponent("CLT Gems — add business: " + form.name);
-    const body = encodeURIComponent(
-      [
-        "Business: " + form.name,
-        "Category: " + form.category,
-        "Certifications: " + form.certifications.join(", "),
-        "Area: " + form.area,
-        "Contact: " + form.contactName,
-        "Email: " + form.email,
-        "Phone: " + form.phone,
-        "Website: " + form.website,
-        "Notes: " + form.notes,
-        "",
-        "(Sent from CLT Gems add form — MVP mailto stub)",
-      ].join("\n")
-    );
-    window.location.href = "mailto:hello.aibloom@outlook.com?subject=" + subject + "&body=" + body;
-  }
-
-  if (saved) {
+  if (status === "sent") {
     return (
       <div className="card border-gem/30 bg-gem-mist p-6 space-y-4">
         <div className="flex items-start gap-3">
           <CheckCircle2 className="h-6 w-6 text-gem shrink-0" />
           <div>
-            <h2 className="font-display text-xl font-bold text-ink">Saved on this device</h2>
+            <h2 className="font-display text-xl font-bold text-ink">
+              {mode === "formspree" ? "Submitted — thank you!" : "Almost there — hit Send in Outlook"}
+            </h2>
             <p className="mt-2 text-sm text-stone-700 leading-relaxed">
-              Your submission was stored in this browser (localStorage) so you have a copy.
-              There is <strong>no live server inbox yet</strong> — this is an MVP stub.
-            </p>
-            <p className="mt-2 text-sm text-stone-700">
-              TODO for production: wire a real form backend or CRM. Optionally email yourself now:
+              {mode === "formspree"
+                ? `Your listing request went to ${INBOX}. We’ll review and follow up.`
+                : `Outlook Web opened with your business details addressed to ${INBOX}. Sign in if needed, then click Send.`}
             </p>
           </div>
         </div>
-        <div className="flex flex-wrap gap-2">
-          <button type="button" className="btn btn-primary" onClick={openMailto}>
-            Open email draft (mailto)
-          </button>
-          <button
-            type="button"
-            className="btn btn-secondary"
-            onClick={() => {
-              setSaved(false);
-              setForm(EMPTY);
-            }}
-          >
-            Submit another
-          </button>
-        </div>
+        <button
+          type="button"
+          className="btn btn-secondary"
+          onClick={() => {
+            setStatus("idle");
+            setForm(EMPTY);
+          }}
+        >
+          Submit another
+        </button>
       </div>
     );
   }
@@ -245,12 +255,13 @@ export function AddBusinessForm() {
       </div>
 
       <p className="text-xs text-muted leading-relaxed">
-        MVP: validated in the browser and saved to localStorage. Optional mailto opens your email app.
-        No claim of server delivery until a real backend is connected.
+        Submits to {INBOX} via Outlook Web (no app chooser). Fill the form, click Submit, then hit
+        Send in Outlook.
       </p>
 
-      <button type="submit" className="btn btn-primary">
-        Submit (local stub)
+      <button type="submit" className="btn btn-primary" disabled={status === "sending"}>
+        <Send className="h-4 w-4" />
+        {status === "sending" ? "Opening…" : "Submit to hello.aibloom@outlook.com"}
       </button>
     </form>
   );

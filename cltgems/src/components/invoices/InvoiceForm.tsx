@@ -199,7 +199,7 @@ export function InvoiceForm({
       </section>
 
       <section className="card p-4 sm:p-5 space-y-4">
-        <h2 className="text-sm font-bold text-ink">Tax, discount & terms</h2>
+        <h2 className="text-sm font-bold text-ink">Tax, discount & payment terms</h2>
         <div className="grid gap-4 sm:grid-cols-3">
           <div>
             <label className="label">Tax rate %</label>
@@ -243,14 +243,7 @@ export function InvoiceForm({
               onChange={(e) => update({ paymentTerms: e.target.value })}
             />
           </div>
-          <div className="sm:col-span-3">
-            <label className="label">Notes</label>
-            <textarea
-              className="input min-h-[96px]"
-              value={invoice.notes}
-              onChange={(e) => update({ notes: e.target.value })}
-            />
-          </div>
+
         </div>
       </section>
     </div>

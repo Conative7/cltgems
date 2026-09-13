@@ -52,14 +52,7 @@ export function buildCleaningHandoff(args: {
     trade: "cleaning",
     createdAt: new Date().toISOString(),
     formatId: "classic-service",
-    notes:
-      "Prefill from CLT Gems Price a job (cleaning). Ballpark estimate for planning — not a formal bid or contract. Low/Target/High were $" +
-      estimate.low.toFixed(0) +
-      " / $" +
-      estimate.target.toFixed(0) +
-      " / $" +
-      estimate.high.toFixed(0) +
-      ".",
+    notes: "",
     lineItems,
     targetTotal: estimate.target,
   };
@@ -118,14 +111,7 @@ export function buildConstructionHandoff(args: {
     trade: "construction" as TradeId,
     createdAt: new Date().toISOString(),
     formatId: "contractor-job",
-    notes:
-      "Prefill from CLT Gems Price a job (construction). Ballpark estimate for planning — not a formal bid or contract. Low/Target/High were $" +
-      estimate.low.toFixed(0) +
-      " / $" +
-      estimate.target.toFixed(0) +
-      " / $" +
-      estimate.high.toFixed(0) +
-      ".",
+    notes: "",
     lineItems,
     targetTotal: estimate.target,
   };

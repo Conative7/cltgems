@@ -96,7 +96,7 @@ export function BuilderClient() {
       ...prev,
       formatId: payload.formatId,
       bilingual: false,
-      notes: payload.notes,
+      notes: "",
       lineItems: payload.lineItems.map((li) =>
         newLineItem({
           description: li.description,

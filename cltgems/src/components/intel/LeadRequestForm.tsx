@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { ArrowRight } from "lucide-react";
+import { openOutlookDraft } from "@/lib/notifyEmail";
 
 const PACKAGES = [
   { id: "neighborhood", label: "Neighborhood List — $49" },
@@ -26,28 +27,26 @@ export function LeadRequestForm({ defaultService = "maps" }: { defaultService?: 
   const [notes, setNotes] = useState("");
   const [name, setName] = useState("");
 
-  const mailto = useMemo(() => {
+  const draft = useMemo(() => {
     const pkgLabel = PACKAGES.find((p) => p.id === pkg)?.label ?? pkg;
     const serviceLabel = SERVICES.find((s) => s.id === service)?.label ?? service;
-    const subject = encodeURIComponent(`Lead order — ${pkgLabel}`);
-    const body = encodeURIComponent(
-      [
-        "Hi AI Bloom,",
-        "",
-        "I'd like to order a lead list.",
-        "",
-        `My name: ${name || "(add your name)"}`,
-        `Service: ${serviceLabel}`,
-        `Package: ${pkgLabel}`,
-        `Niche / category: ${niche || "(e.g. HVAC, roofers, dentists)"}`,
-        `Location: ${location || "(e.g. Charlotte, NC)"}`,
-        `Approx. how many: ${limit}`,
-        `Notes: ${notes || "(optional)"}`,
-        "",
-        "Please confirm price and turnaround. Thanks!",
-      ].join("\n")
-    );
-    return `mailto:hello.aibloom@outlook.com?subject=${subject}&body=${body}`;
+    const subject = `Lead order — ${pkgLabel}`;
+    const body = [
+      "Hi AI Bloom,",
+      "",
+      "I'd like to order a lead list.",
+      "",
+      `My name: ${name || "(add your name)"}`,
+      `Service: ${serviceLabel}`,
+      `Package: ${pkgLabel}`,
+      `Niche / category: ${niche || "(e.g. HVAC, roofers, dentists)"}`,
+      `Location: ${location || "(e.g. Charlotte, NC)"}`,
+      `Approx. how many: ${limit}`,
+      `Notes: ${notes || "(optional)"}`,
+      "",
+      "Please confirm price and turnaround. Thanks!",
+    ].join("\n");
+    return { subject, body };
   }, [service, pkg, niche, location, limit, notes, name]);
 
   return (
@@ -55,7 +54,7 @@ export function LeadRequestForm({ defaultService = "maps" }: { defaultService?: 
       className="card space-y-4 p-5 sm:p-6"
       onSubmit={(e) => {
         e.preventDefault();
-        window.location.href = mailto;
+        openOutlookDraft(draft.subject, draft.body);
       }}
     >
       <div>

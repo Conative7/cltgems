@@ -1,5 +1,5 @@
 import { jsPDF } from "jspdf";
-import { calcTotals, formatMoney, lineItemAmount } from "../calculations";
+import { calcTotals, formatMoney, formatQty, formatTaxPercent, lineItemAmount, normalizeTaxRate } from "../calculations";
 import { getFormat } from "../formats";
 import type { InvoiceData } from "../types";
 import { invoiceFilename, triggerBlobDownload } from "./download";
@@ -31,10 +31,12 @@ function buildPdf(invoice: InvoiceData): { blob: Blob; filename: string } {
   doc.setTextColor(15, 23, 42);
   doc.text(bilingual ? "INVOICE / FACTURA" : "INVOICE", margin, y + 24);
 
-  doc.setFont("helvetica", "normal");
-  doc.setFontSize(10);
-  doc.setTextColor(100, 116, 139);
-  doc.text(format?.name ?? "Invoice", margin, y + 42);
+  if (invoice.business.name) {
+    doc.setFont("helvetica", "normal");
+    doc.setFontSize(10);
+    doc.setTextColor(71, 85, 105);
+    doc.text(invoice.business.name, margin, y + 42);
+  }
 
   const metaX = pageW - margin;
   doc.setFont("helvetica", "bold");
@@ -58,9 +60,9 @@ function buildPdf(invoice: InvoiceData): { blob: Blob; filename: string } {
   doc.setFont("helvetica", "bold");
   doc.setFontSize(11);
   doc.setTextColor(15, 23, 42);
-  doc.text(invoice.business.name || "Your business", margin, y);
+  doc.text(invoice.business.name || "—", margin, y);
   doc.text(
-    invoice.client.company || invoice.client.name || "Client",
+    invoice.client.company || invoice.client.name || "—",
     margin + colW + 24,
     y
   );
@@ -114,7 +116,7 @@ function buildPdf(invoice: InvoiceData): { blob: Blob; filename: string } {
     const desc = item.description || "—";
     const wrapped = doc.splitTextToSize(desc, qtyX - descX - 16);
     doc.text(wrapped, descX, y);
-    doc.text(String(item.quantity) + (item.unit ? " " + item.unit : ""), qtyX, y, { align: "right" });
+    doc.text(formatQty(Number(item.quantity) || 0, item.unit), qtyX, y, { align: "right" });
     doc.text(formatMoney(item.unitPrice, invoice.currency), priceX, y, { align: "right" });
     doc.text(formatMoney(amount, invoice.currency), amtX, y, { align: "right" });
     y += Math.max(16, wrapped.length * 12 + 4);
@@ -137,13 +139,14 @@ function buildPdf(invoice: InvoiceData): { blob: Blob; filename: string } {
   if (totals.discountAmount > 0) {
     rows.push([label("Discount", "Descuento"), "-" + formatMoney(totals.discountAmount, invoice.currency)]);
   }
-  if (invoice.taxRate > 0) {
+  const taxRate = normalizeTaxRate(invoice.taxRate);
+  if (taxRate > 0) {
     rows.push([
-      label("Tax", "Impuesto") + " (" + invoice.taxRate + "%)",
+      label("Sales tax", "Impuesto") + " (" + formatTaxPercent(taxRate) + "%)",
       formatMoney(totals.taxAmount, invoice.currency),
     ]);
   }
-  rows.push([label("Total", "Total"), formatMoney(totals.total, invoice.currency), true]);
+  rows.push([label("Amount due", "Total a pagar"), formatMoney(totals.total, invoice.currency), true]);
 
   rows.forEach(([lab, val, bold]) => {
     doc.setFont("helvetica", bold ? "bold" : "normal");
@@ -166,17 +169,6 @@ function buildPdf(invoice: InvoiceData): { blob: Blob; filename: string } {
     const terms = doc.splitTextToSize(invoice.paymentTerms, pageW - margin * 2);
     doc.text(terms, margin, y);
     y += terms.length * 12 + 10;
-  }
-  if (invoice.notes) {
-    doc.setFont("helvetica", "bold");
-    doc.setFontSize(9);
-    doc.setTextColor(ar, ag, ab);
-    doc.text(label("Notes", "Notas"), margin, y);
-    y += 12;
-    doc.setFont("helvetica", "normal");
-    doc.setTextColor(71, 85, 105);
-    const notes = doc.splitTextToSize(invoice.notes, pageW - margin * 2);
-    doc.text(notes, margin, y);
   }
 
   doc.setFontSize(8);

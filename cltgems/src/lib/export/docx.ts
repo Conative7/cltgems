@@ -11,7 +11,7 @@ import {
   TextRun as Run,
   WidthType as W,
 } from "docx";
-import { calcTotals, formatMoney, lineItemAmount } from "../calculations";
+import { calcTotals, formatMoney, formatQty, formatTaxPercent, lineItemAmount, normalizeTaxRate } from "../calculations";
 import { getFormat } from "../formats";
 import type { InvoiceData } from "../types";
 import { invoiceFilename, triggerBlobDownload } from "./download";
@@ -112,7 +112,7 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
               }),
               new Para({
                 spacing: { before: 60 },
-                children: [new Run({ text: invoice.business.name || "Your business", bold: true, size: 22, font: "Calibri" })],
+                children: [new Run({ text: invoice.business.name || "—", bold: true, size: 22, font: "Calibri" })],
               }),
               ...[invoice.business.address, invoice.business.cityStateZip, invoice.business.email, invoice.business.phone, invoice.business.website]
                 .filter(Boolean)
@@ -135,7 +135,7 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
                 spacing: { before: 60 },
                 children: [
                   new Run({
-                    text: invoice.client.company || invoice.client.name || "Client",
+                    text: invoice.client.company || invoice.client.name || "—",
                     bold: true,
                     size: 22,
                     font: "Calibri",
@@ -177,7 +177,7 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
       new Row({
         children: [
           cell(item.description || "—", { width: 4560 }),
-          cell(String(item.quantity) + (item.unit ? " " + item.unit : ""), { width: 1200, align: Align.RIGHT }),
+          cell(formatQty(Number(item.quantity) || 0, item.unit), { width: 1200, align: Align.RIGHT }),
           cell(formatMoney(item.unitPrice, invoice.currency), { width: 1800, align: Align.RIGHT }),
           cell(formatMoney(lineItemAmount(item), invoice.currency), { width: 1800, align: Align.RIGHT }),
         ],
@@ -217,16 +217,17 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
       })
     );
   }
-  if (invoice.taxRate > 0) {
+  const taxRate = normalizeTaxRate(invoice.taxRate);
+  if (taxRate > 0) {
     totalLines.push(
       new Para({
         alignment: Align.RIGHT,
         children: [
           new Run({
             text:
-              label("Tax", "Impuesto") +
+              label("Sales tax", "Impuesto") +
               " (" +
-              invoice.taxRate +
+              formatTaxPercent(taxRate) +
               "%): " +
               formatMoney(totals.taxAmount, invoice.currency),
             size: 20,
@@ -242,7 +243,7 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
       alignment: Align.RIGHT,
       children: [
         new Run({
-          text: label("Total", "Total") + ": " + formatMoney(totals.total, invoice.currency),
+          text: label("Amount due", "Total a pagar") + ": " + formatMoney(totals.total, invoice.currency),
           bold: true,
           size: 26,
           color: accent,
@@ -262,17 +263,6 @@ export async function downloadInvoiceDocx(invoice: InvoiceData): Promise<void> {
       }),
       new Para({
         children: [new Run({ text: invoice.paymentTerms, size: 18, color: "475569", font: "Calibri" })],
-      })
-    );
-  }
-  if (invoice.notes) {
-    children.push(
-      new Para({
-        spacing: { before: 200 },
-        children: [new Run({ text: label("Notes", "Notas"), bold: true, size: 18, color: accent, font: "Calibri" })],
-      }),
-      new Para({
-        children: [new Run({ text: invoice.notes, size: 18, color: "475569", font: "Calibri" })],
       })
     );
   }
