@@ -18,8 +18,8 @@ export default function AboutPage() {
             AI made simple — for real people building real businesses
           </h1>
           <p className="mt-4 text-lg text-stone-600 leading-relaxed">
-            No jargon. No overwhelm. Just clear tools that help you move faster in the AI age —
-            and a human who will answer when you reach out.
+            No jargon. No overwhelm. Clear tools that help you move faster in the AI age —
+            and a real person who will answer when you reach out.
           </p>
         </div>
       </section>
@@ -27,13 +27,11 @@ export default function AboutPage() {
       <div className="container-page py-10 sm:py-12 max-w-3xl space-y-10">
         <section className="space-y-4 text-stone-700 leading-relaxed">
           <p>
-            <strong className="text-ink">AI Bloom</strong> is here to help Charlotte small businesses
-            use AI and simple software without the hassle. You don’t need to be “techy.” You need
-            results: find the right people, price the job, send a clean invoice, and get paid.
+            <strong className="text-ink">AI Bloom</strong> helps Charlotte small businesses use AI
+            and simple software without the hassle. You don’t need to be techy. You need results:
+            find the right people, price the job, send a clean invoice, and get paid.
           </p>
-          <p>
-            Think of this site as your calm toolkit — open a page, do the thing, go back to work.
-          </p>
+          <p>Open a page, do the thing, go back to work. That’s it.</p>
         </section>
 
         <section>
@@ -50,7 +48,7 @@ export default function AboutPage() {
                   href={item.href}
                   className="card flex h-full flex-col p-4 transition-shadow hover:shadow-md"
                 >
-                  <span className="font-display font-bold text-ink group-hover:text-gem">{item.title}</span>
+                  <span className="font-display font-bold text-ink">{item.title}</span>
                   <span className="mt-1 text-sm text-muted leading-relaxed">{item.desc}</span>
                   <span className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-gem">
                     Open <ArrowRight className="h-4 w-4" />
@@ -61,33 +59,42 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section className="card border-gem/20 bg-gem-mist p-5 sm:p-6">
-          <div className="flex gap-3">
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gem text-white">
-              <HeartHandshake className="h-5 w-5" />
+        <section
+          id="connect"
+          className="rounded-2xl border-2 border-gem/30 bg-white p-6 sm:p-8 shadow-sm"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gem text-white">
+              <HeartHandshake className="h-6 w-6" />
             </span>
-            <div>
-              <h2 className="font-display text-lg font-bold text-gem-dark">We’re here to help</h2>
-              <p className="mt-2 text-sm text-stone-700 leading-relaxed">
-                Stuck on a tool? Curious about AI for your business? Just want to say hello?
-                Email anytime — no pitch required.
+            <div className="min-w-0 flex-1">
+              <h2 className="font-display text-2xl font-extrabold text-ink">Connect with us</h2>
+              <p className="mt-2 text-stone-700 leading-relaxed">
+                Stuck on a tool? Curious about AI for your business? Or just want to say{" "}
+                <strong className="text-ink">hello</strong>? We read every message.
               </p>
               <a
                 href="mailto:hello.aibloom@outlook.com?subject=Hello%20from%20the%20AI%20Bloom%20site"
-                className="mt-4 inline-flex items-center gap-2 btn btn-primary"
+                className="mt-5 inline-flex items-center justify-center gap-2 btn btn-primary text-base px-5 py-3"
               >
-                <Mail className="h-4 w-4" />
-                hello.aibloom@outlook.com
+                <Mail className="h-5 w-5" />
+                Email hello.aibloom@outlook.com
               </a>
-              <p className="mt-3 text-xs text-muted">
-                Or copy: <span className="font-semibold text-ink">hello.aibloom@outlook.com</span>
+              <p className="mt-3 text-sm text-muted">
+                Copy &amp; paste:{" "}
+                <a
+                  href="mailto:hello.aibloom@outlook.com"
+                  className="font-bold text-gem underline underline-offset-2 break-all"
+                >
+                  hello.aibloom@outlook.com
+                </a>
               </p>
             </div>
           </div>
         </section>
 
-        <section className="rounded-xl border border-border bg-white p-5 flex gap-3">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gem-soft text-gem-dark">
+        <section className="rounded-xl border border-border bg-gem-mist p-5 flex gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-white text-gem-dark border border-gem/20">
             <Sparkles className="h-5 w-5" />
           </span>
           <div>
