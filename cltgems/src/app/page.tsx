@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
 import {
   ArrowRight,
   Calculator,
@@ -46,6 +47,7 @@ const MORE = [
 export default function HomePage() {
   return (
     <div>
+      <LocalBusinessJsonLd />
       <section className="border-b border-border bg-gradient-to-b from-gem-mist to-warm">
         <div className="container-page py-12 sm:py-16">
           <p className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-xs font-bold text-gem-dark">

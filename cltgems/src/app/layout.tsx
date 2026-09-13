@@ -16,13 +16,43 @@ const nunito = Nunito({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.aibloom.agency"),
   title: {
-    default: "AI Bloom — Charlotte tools for underserved businesses",
+    default: "AI Bloom — Charlotte invoices, leads & free Google listing checks",
     template: "%s | AI Bloom",
   },
   description:
-    "AI made simple. Learn. Try. Grow. Practical Charlotte tools — directory, per-task data intel, job pricing, and invoice Word/PDF tools.",
-  metadataBase: new URL("https://aibloom.agency"),
+    "AI made simple for Charlotte businesses. Free Google listing checks, Find leads packs, Price a job, and invoices without Canva — even on a library PC.",
+  keywords: [
+    "Charlotte invoice generator",
+    "invoice without Canva",
+    "Charlotte Google listing audit",
+    "HVAC leads Charlotte",
+    "AI Bloom",
+    "local business leads Charlotte NC",
+  ],
+  alternates: {
+    canonical: "https://www.aibloom.agency",
+  },
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://www.aibloom.agency",
+    siteName: "AI Bloom",
+    title: "AI Bloom — Charlotte tools that get you found and paid",
+    description:
+      "Free Google listing checks, lead packs, job pricing, and invoices without Canva. Built in Charlotte.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "AI Bloom — Charlotte invoices, leads & free Google checks",
+    description:
+      "AI made simple. Free Google listing checks, Find leads, Price a job, invoices without Canva.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
