@@ -9,7 +9,7 @@ export type Suggestion = { label: string; prompt: string };
 
 export const SUGGESTIONS: Suggestion[] = [
   { label: "Find leads", prompt: "How do I find leads?" },
-  { label: "Prices", prompt: "How much do lead packs cost?" },
+  { label: "Free Google check", prompt: "I want a free Google listing check" },
   { label: "Price a job", prompt: "Where can I price a job?" },
   { label: "Invoices", prompt: "How do I make an invoice?" },
   { label: "Talk to a person", prompt: "I want to talk to a person" },
@@ -21,6 +21,7 @@ const LINKS = {
   invoices: { label: "Invoices", href: "/invoices" },
   directory: { label: "Directory", href: "/directory" },
   about: { label: "About & connect", href: "/about#connect" },
+  check: { label: "Free Google check", href: "/check" },
   add: { label: "Add your business", href: "/add" },
 } as const;
 

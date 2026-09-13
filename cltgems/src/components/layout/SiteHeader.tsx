@@ -6,11 +6,10 @@ import { Sparkles, Menu, X } from "lucide-react";
 import { useState } from "react";
 
 const NAV = [
-  { href: "/directory", label: "Directory" },
   { href: "/intel", label: "Find leads" },
+  { href: "/check", label: "Free Google check" },
   { href: "/price", label: "Price a job" },
   { href: "/invoices", label: "Invoices" },
-  { href: "/add", label: "Add business" },
   { href: "/about", label: "About" },
 ];
 

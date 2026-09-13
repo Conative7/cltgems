@@ -38,7 +38,7 @@ const PATHS = [
 ] as const;
 
 const MORE = [
-  { href: "/directory", label: "Browse directory" },
+  { href: "/check", label: "Free Google listing check" },
   { href: "/add", label: "Add your business" },
   { href: "/about#connect", label: "Connect with us" },
 ];
