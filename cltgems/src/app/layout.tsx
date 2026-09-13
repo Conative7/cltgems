@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { DM_Sans, Nunito } from "next/font/google";
+import { SiteAssistant } from "@/components/chat/SiteAssistant";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import "./globals.css";
@@ -20,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | AI Bloom",
   },
   description:
-    "AI made simple. Learn. Try. Grow. Practical Charlotte resources — directory, certification pointers, job pricing, and invoice Word/PDF tools.",
+    "AI made simple. Learn. Try. Grow. Practical Charlotte tools — directory, per-task data intel, job pricing, and invoice Word/PDF tools.",
   metadataBase: new URL("https://aibloom.agency"),
 };
 
@@ -35,6 +36,7 @@ export default function RootLayout({
         <SiteHeader />
         <main className="flex-1">{children}</main>
         <SiteFooter />
+        <SiteAssistant />
       </body>
     </html>
   );
