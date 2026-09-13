@@ -2,7 +2,9 @@
 
 export const INBOX = "hello.aibloom@outlook.com";
 
-export const FORMSPREE_ID = process.env.NEXT_PUBLIC_FORMSPREE_ID || "";
+/** AI Bloom inbox — Formspree form https://formspree.io/f/mljeynwz */
+export const FORMSPREE_ID =
+  process.env.NEXT_PUBLIC_FORMSPREE_ID || "mljeynwz";
 
 export function outlookComposeUrl(subject: string, body: string): string {
   return (
