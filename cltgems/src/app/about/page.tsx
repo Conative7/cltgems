@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { ArrowRight, HeartHandshake, Mail, Sparkles } from "lucide-react";
+import { ArrowRight, HeartHandshake, Sparkles } from "lucide-react";
+import { ContactForm } from "@/components/contact/ContactForm";
 
 export const metadata: Metadata = {
   title: "About",
@@ -59,38 +60,21 @@ export default function AboutPage() {
           </ul>
         </section>
 
-        <section
-          id="connect"
-          className="rounded-2xl border-2 border-gem/30 bg-white p-6 sm:p-8 shadow-sm"
-        >
-          <div className="flex flex-col sm:flex-row sm:items-start gap-4">
+        <section id="connect" className="rounded-2xl border-2 border-gem/30 bg-white p-6 sm:p-8 shadow-sm">
+          <div className="flex gap-3 items-start mb-5">
             <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gem text-white">
               <HeartHandshake className="h-6 w-6" />
             </span>
-            <div className="min-w-0 flex-1">
+            <div>
               <h2 className="font-display text-2xl font-extrabold text-ink">Connect with us</h2>
-              <p className="mt-2 text-stone-700 leading-relaxed">
-                Stuck on a tool? Curious about AI for your business? Or just want to say{" "}
-                <strong className="text-ink">hello</strong>? We read every message.
-              </p>
-              <a
-                href="mailto:hello.aibloom@outlook.com?subject=Hello%20from%20the%20AI%20Bloom%20site"
-                className="mt-5 inline-flex items-center justify-center gap-2 btn btn-primary text-base px-5 py-3"
-              >
-                <Mail className="h-5 w-5" />
-                Email hello.aibloom@outlook.com
-              </a>
-              <p className="mt-3 text-sm text-muted">
-                Copy &amp; paste:{" "}
-                <a
-                  href="mailto:hello.aibloom@outlook.com"
-                  className="font-bold text-gem underline underline-offset-2 break-all"
-                >
-                  hello.aibloom@outlook.com
-                </a>
+              <p className="mt-1 text-stone-700 leading-relaxed">
+                Questions, ideas, or just <strong className="text-ink">hello</strong> — send a note
+                here. You’ll get a reply at the email you leave. We also get notified at{" "}
+                <span className="font-semibold text-ink">hello.aibloom@outlook.com</span>.
               </p>
             </div>
           </div>
+          <ContactForm />
         </section>
 
         <section className="rounded-xl border border-border bg-gem-mist p-5 flex gap-3">
