@@ -4,8 +4,8 @@ import {
   Building2,
   Calculator,
   FileText,
-  HandCoins,
   PlusCircle,
+  Radar,
   Search,
 } from "lucide-react";
 import { HomeSearch } from "@/components/home/HomeSearch";
@@ -18,10 +18,10 @@ const GEMS = [
     icon: Building2,
   },
   {
-    href: "/resources",
-    title: "Resources",
-    desc: "Certification, city contracting, SBA, workforce, and getting-paid links — short cards, real next steps.",
-    icon: HandCoins,
+    href: "/intel",
+    title: "Find leads",
+    desc: "Order Google Maps–style lead lists for Charlotte niches. Per task, clean CSV — priced so you keep the margin.",
+    icon: Radar,
   },
   {
     href: "/invoices",
@@ -52,11 +52,11 @@ export default function HomePage() {
             AI Bloom · Charlotte NC · Practical tools
           </p>
           <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight">
-            A gem of resources for Charlotte businesses that are building, getting certified, and getting paid.
+            Practical gems for Charlotte businesses that are building, getting found, and getting paid.
           </h1>
           <p className="mt-4 max-w-2xl text-lg text-stone-600 leading-relaxed">
             For underserved, small, mobility, HUB, minority-owned, and certified contractors & operators —
-            directory pointers, grants/aid links, job pricing, and invoice docs without the SaaS bloat.
+            directory, per-task data intel, job pricing, and invoice docs without the SaaS bloat.
           </p>
 
           <div className="mt-8 max-w-xl">

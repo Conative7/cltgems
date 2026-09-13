@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "About",
-  description: "AI Bloom tools for underserved Charlotte businesses — directory, resources, pricing, invoices.",
+  description: "AI Bloom tools for underserved Charlotte businesses — directory, data intel, pricing, invoices.",
 };
 
 export default function AboutPage() {
@@ -15,15 +15,16 @@ export default function AboutPage() {
         <p>
           <strong className="text-ink">AI Bloom</strong> makes practical AI-era tools simple —
           learn, try, grow. This Charlotte-facing toolkit helps underserved, small, mobility, minority-owned,
-          and certified contractors and operators get found, get certified, price work, and get paid.
+          and certified contractors and operators get found, price work, pull local market lists, and get paid.
         </p>
         <p>
           Why put <Link href="/directory" className="font-semibold text-gem underline underline-offset-2">directory</Link>,{" "}
-          <Link href="/resources" className="font-semibold text-gem underline underline-offset-2">resources</Link>,{" "}
+          <Link href="/intel" className="font-semibold text-gem underline underline-offset-2">data intel</Link>,{" "}
           <Link href="/price" className="font-semibold text-gem underline underline-offset-2">job pricing</Link>, and an{" "}
           <Link href="/invoices" className="font-semibold text-gem underline underline-offset-2">invoice library</Link>{" "}
-          together? Getting certified and finding opportunities matters — and so does getting paid.
-          Clean Word/PDF invoices that work on a phone or library PC close that loop.
+          together? Getting found and finding opportunities matters — and so does getting paid.
+          Clean Word/PDF invoices that work on a phone or library PC close that loop. Data intel is paid per task
+          so the free Invoice Library still helps you bill for the work.
         </p>
         <p>
           Local product nickname <em>CLT Gems</em> still describes the Charlotte story in places —

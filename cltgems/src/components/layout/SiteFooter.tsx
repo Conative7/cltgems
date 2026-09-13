@@ -11,12 +11,12 @@ export function SiteFooter() {
             <p className="mt-0.5 text-sm text-muted tracking-wide">Learn. Try. Grow.</p>
             <p className="mt-3 max-w-md text-sm text-muted leading-relaxed">
               Tools for real people — Charlotte operators welcome. Practical directory,
-              resources, job pricing, and invoice docs without the SaaS bloat.
+              data intel, job pricing, and invoice docs without the SaaS bloat.
             </p>
           </div>
           <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-stone-600">
             <Link href="/directory" className="hover:text-gem">Directory</Link>
-            <Link href="/resources" className="hover:text-gem">Resources</Link>
+            <Link href="/intel" className="hover:text-gem">Find leads</Link>
             <Link href="/price" className="hover:text-gem">Price a job</Link>
             <Link href="/invoices" className="hover:text-gem">Invoices</Link>
             <Link href="/add" className="hover:text-gem">Add business</Link>

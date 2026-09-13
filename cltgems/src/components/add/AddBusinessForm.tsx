@@ -94,7 +94,7 @@ export function AddBusinessForm() {
         "(Sent from CLT Gems add form — MVP mailto stub)",
       ].join("\n")
     );
-    window.location.href = "mailto:hello@cltgems.com?subject=" + subject + "&body=" + body;
+    window.location.href = "mailto:hello.aibloom@outlook.com?subject=" + subject + "&body=" + body;
   }
 
   if (saved) {
