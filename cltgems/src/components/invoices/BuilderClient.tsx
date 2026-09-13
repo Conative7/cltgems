@@ -107,7 +107,7 @@ export function BuilderClient() {
       ),
     }));
     setMessageTone("ok");
-    setMessage("Estimate loaded from Price a job — review line items before sending.");
+    setMessage("Loaded from Price a job — review lines, add your business & client, then download Word or PDF.");
     // eslint-disable-next-line react-hooks/exhaustive-deps -- apply handoff once after hydrate
   }, [session.hydrated, search]);
 

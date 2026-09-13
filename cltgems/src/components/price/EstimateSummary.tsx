@@ -1,5 +1,6 @@
 "use client";
 
+import { FileText } from "lucide-react";
 import { formatMoney } from "@/lib/calculations";
 import type { EstimateBreakdown } from "@/lib/pricing";
 
@@ -104,9 +105,16 @@ export function EstimateSummary({
         <strong>Your rates</strong> — stored only in this browser.
       </p>
 
-      <button type="button" className="btn btn-primary w-full sm:w-auto" onClick={onCreateInvoice}>
-        Create invoice from this estimate
-      </button>
+      <div className="rounded-xl border-2 border-gem/30 bg-gem-mist p-4 space-y-2">
+        <p className="text-sm font-bold text-gem-dark">Ready to get paid?</p>
+        <p className="text-xs text-stone-600 leading-relaxed">
+          Turns this estimate into a professional invoice — no Canva, works on a library PC.
+        </p>
+        <button type="button" className="btn btn-primary w-full" onClick={onCreateInvoice}>
+          <FileText className="h-4 w-4" />
+          Make invoice from this price
+        </button>
+      </div>
     </div>
   );
 }
