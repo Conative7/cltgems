@@ -14,6 +14,7 @@ import { createDemoInvoice, newLineItem } from "@/lib/defaults";
 import { formatMoney } from "@/lib/calculations";
 import { getFormat } from "@/lib/formats";
 import { consumePriceHandoff } from "@/lib/pricing";
+import { consumeEstimateInvoiceHandoff } from "@/lib/estimate";
 import { addExport, consumeCredit, loadCredits, saveDraft } from "@/lib/storage";
 import type { FormatId } from "@/lib/types";
 
@@ -88,26 +89,64 @@ export function BuilderClient() {
 
   useEffect(() => {
     if (!session.hydrated || handoffApplied.current) return;
-    if (search.get("from") !== "price") return;
-    const payload = consumePriceHandoff();
-    if (!payload) return;
-    handoffApplied.current = true;
-    session.setInvoice((prev) => ({
-      ...prev,
-      formatId: payload.formatId,
-      bilingual: false,
-      notes: "",
-      lineItems: payload.lineItems.map((li) =>
-        newLineItem({
-          description: li.description,
-          quantity: li.quantity,
-          unitPrice: li.unitPrice,
-          unit: li.unit ?? "ea",
-        })
-      ),
-    }));
-    setMessageTone("ok");
-    setMessage("Loaded from Price a job — review lines, add your business & client, then download Word or PDF.");
+    const from = search.get("from");
+    if (from === "price") {
+      const payload = consumePriceHandoff();
+      if (!payload) return;
+      handoffApplied.current = true;
+      session.setInvoice((prev) => ({
+        ...prev,
+        formatId: payload.formatId,
+        bilingual: false,
+        notes: "",
+        lineItems: payload.lineItems.map((li) =>
+          newLineItem({
+            description: li.description,
+            quantity: li.quantity,
+            unitPrice: li.unitPrice,
+            unit: li.unit ?? "ea",
+          })
+        ),
+      }));
+      setMessageTone("ok");
+      setMessage("Loaded from Price a job — review lines, add your business & client, then download Word or PDF.");
+      return;
+    }
+    if (from === "estimate") {
+      const payload = consumeEstimateInvoiceHandoff();
+      if (!payload) return;
+      handoffApplied.current = true;
+      session.setInvoice((prev) => ({
+        ...prev,
+        formatId: payload.formatId,
+        bilingual: false,
+        notes: payload.notes,
+        business: {
+          ...prev.business,
+          name: payload.businessName || prev.business.name,
+          email: payload.businessEmail || prev.business.email,
+          phone: payload.businessPhone || prev.business.phone,
+        },
+        client: {
+          ...prev.client,
+          name: payload.clientName || prev.client.name,
+          email: payload.clientEmail || prev.client.email,
+          phone: payload.clientPhone || prev.client.phone,
+          address: payload.clientAddress || prev.client.address,
+          cityStateZip: payload.clientCityStateZip || prev.client.cityStateZip,
+        },
+        lineItems: payload.lineItems.map((li) =>
+          newLineItem({
+            description: li.description,
+            quantity: li.quantity,
+            unitPrice: li.unitPrice,
+            unit: li.unit ?? "ea",
+          })
+        ),
+      }));
+      setMessageTone("ok");
+      setMessage("Loaded from Estimate & agreement — review lines, then download Word or PDF.");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps -- apply handoff once after hydrate
   }, [session.hydrated, search]);
 

@@ -1,15 +1,17 @@
 "use client";
 
-import { FileText } from "lucide-react";
+import { ClipboardList, FileText } from "lucide-react";
 import { formatMoney } from "@/lib/calculations";
 import type { EstimateBreakdown } from "@/lib/pricing";
 
 export function EstimateSummary({
   estimate,
   onCreateInvoice,
+  onCreateEstimate,
 }: {
   estimate: EstimateBreakdown;
   onCreateInvoice: () => void;
+  onCreateEstimate: () => void;
 }) {
   return (
     <div className="card p-5 sm:p-6 space-y-5">
@@ -105,12 +107,16 @@ export function EstimateSummary({
         <strong>Your rates</strong> — stored only in this browser.
       </p>
 
-      <div className="rounded-xl border-2 border-gem/30 bg-gem-mist p-4 space-y-2">
-        <p className="text-sm font-bold text-gem-dark">Ready to get paid?</p>
+      <div className="rounded-xl border-2 border-gem/30 bg-gem-mist p-4 space-y-3">
+        <p className="text-sm font-bold text-gem-dark">Next step with this target</p>
         <p className="text-xs text-stone-600 leading-relaxed">
-          Turns this estimate into a professional invoice — no Canva, works on a library PC.
+          Send a simple estimate / work agreement first — or skip straight to a professional invoice.
         </p>
-        <button type="button" className="btn btn-primary w-full" onClick={onCreateInvoice}>
+        <button type="button" className="btn btn-primary w-full" onClick={onCreateEstimate}>
+          <ClipboardList className="h-4 w-4" />
+          Create estimate / agreement
+        </button>
+        <button type="button" className="btn btn-secondary w-full" onClick={onCreateInvoice}>
           <FileText className="h-4 w-4" />
           Make invoice from this price
         </button>

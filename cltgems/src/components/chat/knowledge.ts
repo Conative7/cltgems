@@ -11,6 +11,7 @@ export const SUGGESTIONS: Suggestion[] = [
   { label: "Find leads", prompt: "How do I find leads?" },
   { label: "Free Google check", prompt: "I want a free Google listing check" },
   { label: "Price a job", prompt: "Where can I price a job?" },
+  { label: "Estimate", prompt: "How do I make an estimate?" },
   { label: "Invoices", prompt: "How do I make an invoice?" },
   { label: "Talk to a person", prompt: "I want to talk to a person" },
 ];
@@ -18,6 +19,7 @@ export const SUGGESTIONS: Suggestion[] = [
 const LINKS = {
   intel: { label: "Find leads", href: "/intel" },
   price: { label: "Price a job", href: "/price" },
+  estimate: { label: "Estimate & agreement", href: "/estimate" },
   invoices: { label: "Invoices", href: "/invoices" },
   directory: { label: "Directory", href: "/directory" },
   about: { label: "About & connect", href: "/about#connect" },
@@ -82,10 +84,17 @@ export function replyTo(userText: string): AssistantReply {
     };
   }
 
-  if (has(q, ["estimate", "job price", "pricing tool", "quote", "cleaning", "construction", "how much should i charge"])) {
+  if (has(q, ["estimate", "agreement", "scope of work", "work agreement", "quote", "proposal"])) {
     return {
-      text: "Use Price a job for a fast ballpark on cleaning & construction-style work. It’s free and simple.",
-      links: [LINKS.price],
+      text: "Estimate & agreement builds a simple scope + price PDF clients can accept (not legal advice). You can import from Price a job, then turn it into an invoice.",
+      links: [LINKS.estimate, LINKS.price, LINKS.invoices],
+    };
+  }
+
+  if (has(q, ["job price", "pricing tool", "cleaning", "construction", "how much should i charge"])) {
+    return {
+      text: "Use Price a job for a fast ballpark on cleaning & construction-style work. Then create an estimate / agreement or invoice.",
+      links: [LINKS.price, LINKS.estimate],
     };
   }
 
@@ -127,8 +136,8 @@ export function replyTo(userText: string): AssistantReply {
 
   if (has(q, ["navigate", "where", "help", "lost", "menu", "pages", "site map", "what can"])) {
     return {
-      text: "Here’s the map:\n• Find leads — local lists\n• Price a job — quick estimates\n• Invoices — Word/PDF\n• Get started — $497 Starter setup\n• Directory — browse / add\n• About — connect with us\n\nTap a button below, or ask in plain words.",
-      links: [LINKS.intel, LINKS.price, LINKS.invoices, LINKS.starter, LINKS.about],
+      text: "Here’s the map:\n• Find leads — local lists\n• Price a job — quick ballpark\n• Estimate — scope + agreement PDF\n• Invoices — Word/PDF\n• Get started — $497 Starter setup\n• Directory — browse / add\n• About — connect with us\n\nTap a button below, or ask in plain words.",
+      links: [LINKS.intel, LINKS.price, LINKS.estimate, LINKS.invoices, LINKS.starter, LINKS.about],
     };
   }
 

@@ -1,4 +1,6 @@
 import type { CreditState, DraftRecord, ExportRecord, InvoiceData } from "./types";
+import { clearPricingLocalData } from "./pricing/storage";
+import { clearEstimateLocalData } from "./estimate/storage";
 
 const KEYS = {
   session: "cltgems_invoice_session",
@@ -83,5 +85,7 @@ export function consumeCredit(): CreditState {
 export function wipeAllLocalData(): void {
   if (typeof window === "undefined") return;
   Object.values(KEYS).forEach((k) => localStorage.removeItem(k));
+  clearPricingLocalData();
+  clearEstimateLocalData();
   sessionStorage.clear();
 }

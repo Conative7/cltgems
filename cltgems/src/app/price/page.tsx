@@ -16,8 +16,9 @@ export default function PricePage() {
         Stop guessing. Price the job in your palm — then invoice like a pro.
       </h1>
       <p className="mt-3 max-w-2xl text-muted leading-relaxed">
-        Quick Low / Target / High for cleaning and construction. When the target looks right, tap{" "}
-        <strong className="text-ink">Make invoice from this price</strong> — Word or PDF, no Canva.
+        Quick Low / Target / High for cleaning and construction. When the target looks right, create an{" "}
+        <strong className="text-ink">estimate / agreement</strong> or{" "}
+        <strong className="text-ink">invoice</strong> — Word or PDF, no Canva.
         Planning tool only — not a formal bid.
       </p>
       <div className="mt-8">
