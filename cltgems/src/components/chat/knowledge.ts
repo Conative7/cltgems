@@ -23,6 +23,7 @@ const LINKS = {
   about: { label: "About & connect", href: "/about#connect" },
   check: { label: "Free Google check", href: "/check" },
   add: { label: "Add your business", href: "/add" },
+  starter: { label: "Get started ($497)", href: "/starter" },
 } as const;
 
 function has(q: string, words: string[]) {
@@ -109,17 +110,25 @@ export function replyTo(userText: string): AssistantReply {
     };
   }
 
+
+  if (has(q, ["starter", "497", "get started", "operator pack", "setup call", "follow-up kit", "follow up kit"])) {
+    return {
+      text: "AI Bloom Starter for Operators is $497 (one-time, ~1 week): we set your Price a job rates, invoice pack, and AI follow-up scripts, plus a 30-min setup (or Loom) and 30 days email support. Free tools stay free — this is the done-with-you package.",
+      links: [LINKS.starter, LINKS.about],
+    };
+  }
+
   if (has(q, ["order", "buy", "purchase", "pay", "how do i get"])) {
     return {
-      text: "For lead packs or a $97 Google audit: go to Find leads, pick what you need, then email the order to hello.aibloom@outlook.com (or use Connect with us). We’ll confirm and deliver your CSV / checklist.",
-      links: [LINKS.intel, LINKS.about],
+      text: "For lead packs or a $97 Google audit: go to Find leads. For the $497 Starter (rates + invoices + follow-up kit), open Get started. Email hello.aibloom@outlook.com or use Connect with us.",
+      links: [LINKS.intel, LINKS.starter, LINKS.about],
     };
   }
 
   if (has(q, ["navigate", "where", "help", "lost", "menu", "pages", "site map", "what can"])) {
     return {
-      text: "Here’s the map:\n• Find leads — local lists\n• Price a job — quick estimates\n• Invoices — Word/PDF\n• Directory — browse / add\n• About — connect with us\n\nTap a button below, or ask in plain words.",
-      links: [LINKS.intel, LINKS.price, LINKS.invoices, LINKS.about],
+      text: "Here’s the map:\n• Find leads — local lists\n• Price a job — quick estimates\n• Invoices — Word/PDF\n• Get started — $497 Starter setup\n• Directory — browse / add\n• About — connect with us\n\nTap a button below, or ask in plain words.",
+      links: [LINKS.intel, LINKS.price, LINKS.invoices, LINKS.starter, LINKS.about],
     };
   }
 

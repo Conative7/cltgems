@@ -6,6 +6,7 @@ import {
   FileText,
   Radar,
   Sparkles,
+  BadgeDollarSign,
 } from "lucide-react";
 
 const PATHS = [
@@ -113,6 +114,24 @@ export default function HomePage() {
           </div>
           <Link href="/invoices" className="btn btn-primary shrink-0">
             Open invoice builder <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+
+        <div className="mt-6 card border-gem/25 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
+          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gem-soft text-gem-dark">
+            <BadgeDollarSign className="h-6 w-6" />
+          </span>
+          <div className="flex-1">
+            <h3 className="font-display text-lg font-extrabold text-ink">
+              Ready for done-with-you setup?
+            </h3>
+            <p className="mt-1 text-sm text-stone-700 leading-relaxed max-w-2xl">
+              AI Bloom Starter for Operators — $497. We tune your rates, invoice pack, and AI
+              follow-up scripts so you quote and get paid faster. One week.
+            </p>
+          </div>
+          <Link href="/starter" className="btn btn-primary shrink-0">
+            Get started <ArrowRight className="h-4 w-4" />
           </Link>
         </div>
 

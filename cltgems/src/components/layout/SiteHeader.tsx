@@ -10,6 +10,7 @@ const NAV = [
   { href: "/check", label: "Free Google check" },
   { href: "/price", label: "Price a job" },
   { href: "/invoices", label: "Invoices" },
+  { href: "/starter", label: "Get started" },
   { href: "/about", label: "About" },
 ];
 

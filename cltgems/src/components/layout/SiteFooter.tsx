@@ -33,6 +33,7 @@ export function SiteFooter() {
               <Link href="/check" className="hover:text-gem">Free Google check</Link>
               <Link href="/price" className="hover:text-gem">Price a job</Link>
               <Link href="/invoices" className="hover:text-gem">Invoices</Link>
+              <Link href="/starter" className="hover:text-gem">Get started</Link>
               <Link href="/about" className="hover:text-gem">About</Link>
               <Link href="/add" className="hover:text-gem text-muted">Add business</Link>
             </div>
