@@ -10,6 +10,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { path: "/intel", priority: 0.9, changeFrequency: "weekly" },
     { path: "/invoices", priority: 0.9, changeFrequency: "weekly" },
     { path: "/price", priority: 0.85, changeFrequency: "weekly" },
+    { path: "/estimate", priority: 0.86, changeFrequency: "weekly" },
     { path: "/starter", priority: 0.88, changeFrequency: "weekly" },
     { path: "/about", priority: 0.7, changeFrequency: "monthly" },
     { path: "/add", priority: 0.5, changeFrequency: "monthly" },

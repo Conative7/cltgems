@@ -14,7 +14,7 @@ export function SiteFooter() {
             <p className="mt-0.5 text-sm font-semibold text-ink">AI made simple.</p>
             <p className="mt-0.5 text-sm text-muted tracking-wide">Learn. Try. Grow.</p>
             <p className="mt-3 max-w-md text-sm text-muted leading-relaxed">
-              Simple Charlotte tools — find leads, free Google listing checks, price jobs, and
+              Simple Charlotte tools — find leads, free Google listing checks, price jobs, estimates, and
               invoices without Canva.
             </p>
             <a
@@ -32,6 +32,7 @@ export function SiteFooter() {
               <Link href="/intel" className="hover:text-gem">Find leads</Link>
               <Link href="/check" className="hover:text-gem">Free Google check</Link>
               <Link href="/price" className="hover:text-gem">Price a job</Link>
+              <Link href="/estimate" className="hover:text-gem">Estimate</Link>
               <Link href="/invoices" className="hover:text-gem">Invoices</Link>
               <Link href="/starter" className="hover:text-gem">Get started</Link>
               <Link href="/about" className="hover:text-gem">About</Link>

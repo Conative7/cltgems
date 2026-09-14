@@ -111,23 +111,32 @@ export function PriceClient({ initialTrade }: { initialTrade?: TradeId }) {
     }));
   }
 
+  function buildHandoff() {
+    return trade === "cleaning"
+      ? buildCleaningHandoff({
+          estimate,
+          jobTypeLabel: CLEANING_JOB_LABELS[cleaning.jobType],
+          conditionLabel: CLEANING_COND_LABELS[cleaning.condition],
+          sqFt: cleaning.sqFt,
+          rooms: cleaning.rooms,
+        })
+      : buildConstructionHandoff({
+          estimate,
+          jobTypeLabel: CONSTRUCTION_JOB_LABELS[construction.jobType],
+          sqFt: construction.sqFt,
+        });
+  }
+
   function onCreateInvoice() {
-    const payload =
-      trade === "cleaning"
-        ? buildCleaningHandoff({
-            estimate,
-            jobTypeLabel: CLEANING_JOB_LABELS[cleaning.jobType],
-            conditionLabel: CLEANING_COND_LABELS[cleaning.condition],
-            sqFt: cleaning.sqFt,
-            rooms: cleaning.rooms,
-          })
-        : buildConstructionHandoff({
-            estimate,
-            jobTypeLabel: CONSTRUCTION_JOB_LABELS[construction.jobType],
-            sqFt: construction.sqFt,
-          });
+    const payload = buildHandoff();
     savePriceHandoff(payload);
     router.push(`/invoices/builder?from=price&format=${payload.formatId}`);
+  }
+
+  function onCreateEstimate() {
+    const payload = buildHandoff();
+    savePriceHandoff(payload);
+    router.push("/estimate?from=price");
   }
 
   if (!hydrated) {
@@ -186,7 +195,7 @@ export function PriceClient({ initialTrade }: { initialTrade?: TradeId }) {
           <ConstructionForm inputs={construction} onChange={setConstruction} />
         )}
         <div className="lg:sticky lg:top-20">
-          <EstimateSummary estimate={estimate} onCreateInvoice={onCreateInvoice} />
+          <EstimateSummary estimate={estimate} onCreateInvoice={onCreateInvoice} onCreateEstimate={onCreateEstimate} />
         </div>
       </div>
     </div>

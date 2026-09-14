@@ -96,7 +96,7 @@ export default function HomePage() {
 
           <p className="mt-6 text-sm text-muted">
             Tip: Price a job →{" "}
-            <strong className="text-ink">Make invoice</strong> → download Word or PDF. Done.
+            <strong className="text-ink">Estimate</strong> → invoice → download Word or PDF. Done.
           </p>
         </div>
       </section>
