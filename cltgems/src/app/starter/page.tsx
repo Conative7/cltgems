@@ -80,7 +80,7 @@ const FAQ = [
   },
   {
     q: "How do I pay?",
-    a: "Email us with subject “AI Bloom Starter $497.” We’ll confirm and send a simple invoice / payment link. Work starts after payment clears.",
+    a: "Pay $497 on the Pay page (card via Stripe), or email with subject “AI Bloom Starter $497” for Zelle / invoice. Work starts after payment clears.",
   },
   {
     q: "Can I do Loom instead of a live call?",
@@ -307,6 +307,9 @@ export default function StarterPage() {
           <p className="text-xs font-bold uppercase tracking-wide text-gem">Clear price</p>
           <h2 className="mt-1 font-display text-3xl font-extrabold text-ink">
             $497 — one time
+            <a href="/pay#starter" className="btn btn-primary mt-4 w-full sm:w-auto">
+              Pay $497 now
+            </a>
           </h2>
           <p className="mt-3 text-stone-600 leading-relaxed">
             Setup + deliverables + 30-min call (or Loom) + 30 days email support. Free site tools

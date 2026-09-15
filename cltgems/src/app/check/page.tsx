@@ -64,10 +64,16 @@ export default function CheckPage() {
               <strong className="text-ink">$97</strong> (white-label available).
             </p>
             <Link
-              href="/intel"
+              href="/pay#cleanup"
+              className="btn btn-primary mt-4 w-full text-sm"
+            >
+              Pay $97 cleanup <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link
+              href="/pay"
               className="mt-3 inline-flex items-center gap-1 text-sm font-bold text-gem"
             >
-              Or order lead packs <ArrowRight className="h-4 w-4" />
+              Or buy a lead pack <ArrowRight className="h-4 w-4" />
             </Link>
           </div>
         </aside>

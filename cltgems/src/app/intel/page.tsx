@@ -58,12 +58,14 @@ const LEAD_SERVICES = [
 
 const PACKAGES = [
   {
+    id: "neighborhood",
     name: "Neighborhood List",
     price: "$49",
     detail: "~50–100 leads · 1 niche · 1 area",
     margin: "Tool cost usually under ~$3",
   },
   {
+    id: "hot",
     name: "Hot Lead Pack",
     price: "$97",
     detail: "Scored hot subset + short notes",
@@ -71,6 +73,7 @@ const PACKAGES = [
     highlight: true,
   },
   {
+    id: "metro",
     name: "Metro Sweep",
     price: "$197",
     detail: "Multi-suburb · up to ~300–500",
@@ -105,11 +108,11 @@ export default function IntelPage() {
             profit when you resell or use the list.
           </p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <a href="#request" className="btn btn-primary">
-              Request a lead list <ArrowRight className="h-4 w-4" />
+            <a href="/pay" className="btn btn-primary">
+              Pay for a pack <ArrowRight className="h-4 w-4" />
             </a>
-            <a href="#services" className="btn btn-secondary">
-              Browse lead types
+            <a href="#request" className="btn btn-secondary">
+              Request a lead list
             </a>
           </div>
         </div>
@@ -216,7 +219,7 @@ export default function IntelPage() {
               <article
                 key={p.name}
                 className={
-                  "card p-5 " +
+                  "card flex flex-col p-5 " +
                   (p.highlight ? "border-gem/40 ring-2 ring-gem/15 bg-gem-mist/50" : "")
                 }
               >
@@ -224,10 +227,18 @@ export default function IntelPage() {
                 <h3 className="mt-2 font-display text-lg font-bold text-ink">{p.name}</h3>
                 <p className="mt-1 font-display text-3xl font-extrabold text-gem-dark">{p.price}</p>
                 <p className="mt-2 text-sm text-stone-700">{p.detail}</p>
-                <p className="mt-2 text-xs font-semibold text-muted">{p.margin}</p>
+                <p className="mt-2 text-xs font-semibold text-muted flex-1">{p.margin}</p>
+                <a href={`/pay#${p.id}`} className="btn btn-primary mt-4 w-full text-sm">
+                  Buy {p.price} <ArrowRight className="h-4 w-4" />
+                </a>
               </article>
             ))}
           </div>
+          <p className="mt-4">
+            <a href="/pay" className="text-sm font-bold text-gem hover:underline underline-offset-2">
+              See all payment options →
+            </a>
+          </p>
           <p className="mt-4 text-sm text-muted">
             Custom tasks from <strong className="text-ink">$97</strong> after a short quote. Bigger
             enrichment (emails at scale) may add a clear line-item — we tell you before we run.
