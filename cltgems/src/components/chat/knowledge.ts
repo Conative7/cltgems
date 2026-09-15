@@ -13,6 +13,7 @@ export const SUGGESTIONS: Suggestion[] = [
   { label: "Price a job", prompt: "Where can I price a job?" },
   { label: "Estimate", prompt: "How do I make an estimate?" },
   { label: "Invoices", prompt: "How do I make an invoice?" },
+  { label: "Pay / buy", prompt: "How do I pay?" },
   { label: "Talk to a person", prompt: "I want to talk to a person" },
 ];
 
@@ -26,6 +27,7 @@ const LINKS = {
   check: { label: "Free Google check", href: "/check" },
   add: { label: "Add your business", href: "/add" },
   starter: { label: "Get started ($497)", href: "/starter" },
+  pay: { label: "Pay / buy", href: "/pay" },
 } as const;
 
 function has(q: string, words: string[]) {
@@ -60,20 +62,20 @@ export function replyTo(userText: string): AssistantReply {
   if (has(q, ["price", "cost", "how much", "pricing", "$", "dollar", "fee", "charge"])) {
     if (has(q, ["audit", "google", "listing", "cleanup", "map"])) {
       return {
-        text: "Google listing help: we often start with a free 3-bullet check. A full cleanup checklist/PDF is $97 (also available white-label). Want leads instead? Open Find leads.",
-        links: [LINKS.intel, LINKS.about],
+        text: "Google listing help: we often start with a free 3-bullet check. A full cleanup checklist/PDF is $97 (also available white-label). Want leads instead? Open Find leads or Pay.",
+        links: [LINKS.pay, LINKS.check, LINKS.intel],
       };
     }
     return {
-      text: "Find leads packs (per task, no subscription):\n• Neighborhood — $49 (~50–100 listings)\n• Hot Lead Pack — $97 (starter)\n• Metro Sweep — $197\n• Custom — from $97\n\nAlso: $97 Google listing audits. Orders go to hello.aibloom@outlook.com for now.",
-      links: [LINKS.intel, LINKS.about],
+      text: "Find leads packs (per task, no subscription):\n• Neighborhood — $49 (~50–100 listings)\n• Hot Lead Pack — $97 (starter)\n• Metro Sweep — $197\n• Custom — from $97\n\nAlso: $97 Google listing audits. Pay online on the Pay page.",
+      links: [LINKS.pay, LINKS.intel],
     };
   }
 
   if (has(q, ["lead", "leads", "outscraper", "scrap", "list", "hot lead", "intel", "data", "prospect", "no website", "review"])) {
     return {
-      text: "Find leads is our per-task shop for local business lists (Charlotte-focused). Pick a pack, tell us niche + city, and order by email — you get a cleaned CSV. No monthly subscription.",
-      links: [LINKS.intel],
+      text: "Find leads is our per-task shop for local business lists (Charlotte-focused). Pick a pack, pay on the Pay page, tell us niche + city — you get a cleaned CSV. No monthly subscription.",
+      links: [LINKS.pay, LINKS.intel],
     };
   }
 
@@ -129,8 +131,8 @@ export function replyTo(userText: string): AssistantReply {
 
   if (has(q, ["order", "buy", "purchase", "pay", "how do i get"])) {
     return {
-      text: "For lead packs or a $97 Google audit: go to Find leads. For the $497 Starter (rates + invoices + follow-up kit), open Get started. Email hello.aibloom@outlook.com or use Connect with us.",
-      links: [LINKS.intel, LINKS.starter, LINKS.about],
+      text: "Open Pay to buy a lead pack, $97 Google cleanup, or the $497 Starter with card. Or Connect with us for Venmo / Zelle / invoice.",
+      links: [LINKS.pay, LINKS.starter, LINKS.about],
     };
   }
 

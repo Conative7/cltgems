@@ -31,6 +31,7 @@ export function SiteFooter() {
             <div className="flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-stone-600">
               <Link href="/intel" className="hover:text-gem">Find leads</Link>
               <Link href="/check" className="hover:text-gem">Free Google check</Link>
+              <Link href="/pay" className="hover:text-gem">Pay</Link>
               <Link href="/price" className="hover:text-gem">Price a job</Link>
               <Link href="/estimate" className="hover:text-gem">Estimate</Link>
               <Link href="/invoices" className="hover:text-gem">Invoices</Link>

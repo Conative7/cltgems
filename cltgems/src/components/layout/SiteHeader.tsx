@@ -8,8 +8,8 @@ import { useState } from "react";
 const NAV = [
   { href: "/intel", label: "Find leads" },
   { href: "/check", label: "Free Google check" },
+  { href: "/pay", label: "Pay" },
   { href: "/price", label: "Price a job" },
-  { href: "/estimate", label: "Estimate" },
   { href: "/invoices", label: "Invoices" },
   { href: "/starter", label: "Get started" },
   { href: "/about", label: "About" },
