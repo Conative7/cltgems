@@ -3,21 +3,29 @@ import type { Metadata } from "next";
 import { PricePageInner } from "./PricePageInner";
 
 export const metadata: Metadata = {
-  title: "Price a job",
+  title: "Free cleaning price calculator | Price a job",
   description:
-    "Ballpark contract pricing for Charlotte cleaning and construction operators — transparent labor, materials, overhead, and margin.",
+    "Free Charlotte cleaning price calculator — for cleaning business owners and homeowners. Get a Low / Target / High ballpark, then turn it into an estimate or invoice.",
 };
 
 export default function PricePage() {
   return (
-    <div className="container-page py-10 sm:py-12">
-      <p className="text-xs font-bold uppercase tracking-wide text-gem">CLT Gems · Operators</p>
-      <h1 className="mt-1 font-display text-3xl font-extrabold text-ink">Price a job</h1>
-      <p className="mt-2 max-w-2xl text-muted leading-relaxed">
-        Quick Low / Target / High ranges for cleaning and general construction. Tune your own rates —
-        then hand off a draft to the invoice builder. Not a formal bid platform.
-      </p>
-      <div className="mt-8">
+    <div>
+      <section className="section-cream border-b-4 border-warhol-ink">
+        <div className="container-page py-10 sm:py-14">
+          <p className="warhol-eyebrow">Free cleaning calculator · AI Bloom</p>
+          <h1 className="headline-lg mt-5 max-w-3xl">
+            Free cleaning price calculator — price a job or get a ballpark quote
+          </h1>
+          <p className="mt-4 max-w-2xl text-lg text-stone-600 leading-relaxed font-medium">
+            Cleaning business owners: set your rates, unlock Low / Target / High, then create an{" "}
+            <strong className="text-warhol-ink">estimate</strong> or <strong className="text-warhol-ink">invoice</strong>.
+            Homeowners: get a free Charlotte-area range and leave your info if you want a real follow-up.
+            Construction pricing is available too. Planning tool only — not a formal bid.
+          </p>
+        </div>
+      </section>
+      <div className="container-page py-8 sm:py-10">
         <Suspense fallback={<p className="text-sm text-muted p-6">Loading…</p>}>
           <PricePageInner />
         </Suspense>
