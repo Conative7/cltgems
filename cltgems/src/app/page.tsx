@@ -91,8 +91,8 @@ export default function HomePage() {
             <div className="hero-panel">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/warhol-bloom.jpg"
-                alt="AI Bloom Warhol-style pop art bloom — bold color for Charlotte small business"
+                src="/images/aibloom-bloom.jpg"
+                alt="AI Bloom flower mark — original bloom emblem for Charlotte small business"
                 width={1200}
                 height={1200}
                 className="w-full object-cover aspect-square sm:aspect-[4/3] lg:aspect-square"
