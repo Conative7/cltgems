@@ -22,8 +22,39 @@ export default function PayPage() {
             Pay for what you need — no subscription
           </h1>
           <p className="mt-4 text-lg text-stone-600 leading-relaxed font-medium">
-            Lead packs, Google listing cleanup, or done-with-you Starter. Card pay is one tap.
-            Free tools (Price a job, invoices, free Google check) stay free.
+            Free Google check is <span className="font-extrabold text-warhol-ink">$0</span> — start
+            there anytime. Paid options below: listing cleanup, lead packs, and done-with-you
+            Starter. Card pay is one tap; no subscription.
+          </p>
+          <p className="mt-3 text-sm font-semibold text-stone-600">
+            Ladder:{" "}
+            <Link href="/check" className="text-warhol-teal underline underline-offset-2 hover:text-warhol-ink">
+              free check
+            </Link>
+            {" → "}
+            <a href="#cleanup" className="text-warhol-magenta underline underline-offset-2 hover:text-warhol-ink">
+              cleanup
+            </a>
+            {" → "}
+            <a href="#hot" className="text-warhol-magenta underline underline-offset-2 hover:text-warhol-ink">
+              hot
+            </a>
+            {" → "}
+            <a href="#neighborhood" className="text-warhol-magenta underline underline-offset-2 hover:text-warhol-ink">
+              neighborhood
+            </a>
+            {" → "}
+            <a href="#metro" className="text-warhol-magenta underline underline-offset-2 hover:text-warhol-ink">
+              metro
+            </a>
+            {" → "}
+            <a href="#starter" className="text-warhol-magenta underline underline-offset-2 hover:text-warhol-ink">
+              starter
+            </a>
+            {" · "}
+            <Link href="/#pricing" className="text-warhol-indigo underline underline-offset-2 hover:text-warhol-ink">
+              prices on home
+            </Link>
           </p>
           {!live ? (
             <p className="mt-4 rounded-xl border-2 border-warhol-ink bg-warhol-yellow/40 px-4 py-3 text-sm font-semibold text-warhol-ink leading-relaxed">

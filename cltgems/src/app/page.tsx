@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
+import { PricingLadder } from "@/components/home/PricingLadder";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 
 const SERVICES = [
@@ -72,18 +73,22 @@ export default function HomePage() {
                 <Link href="/check" className="btn-warhol btn-warhol-magenta">
                   Free Google check <ArrowRight className="h-5 w-5" />
                 </Link>
-                <Link href="/intel" className="btn-warhol btn-warhol-outline">
-                  Find leads
+                <Link href="/#pricing" className="btn-warhol btn-warhol-outline">
+                  See pricing
                 </Link>
               </div>
               <p className="mt-4 text-sm text-muted font-semibold">
                 Or{" "}
-                <Link href="/invoices" className="text-warhol-magenta underline underline-offset-2 hover:text-warhol-ink">
+                <Link href="/intel" className="text-warhol-magenta underline underline-offset-2 hover:text-warhol-ink">
+                  find leads
+                </Link>{" "}
+                ·{" "}
+                <Link href="/invoices" className="text-warhol-teal underline underline-offset-2 hover:text-warhol-ink">
                   make an invoice
                 </Link>{" "}
                 ·{" "}
-                <Link href="/price" className="text-warhol-teal underline underline-offset-2 hover:text-warhol-ink">
-                  price a job
+                <Link href="/pay" className="text-warhol-indigo underline underline-offset-2 hover:text-warhol-ink">
+                  checkout
                 </Link>
               </p>
             </div>
@@ -179,7 +184,10 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 4. How it works */}
+      {/* 4. Pricing ladder */}
+      <PricingLadder />
+
+      {/* 5. How it works */}
       <section className="bg-white border-b-4 border-warhol-ink">
         <div className="container-page py-12 sm:py-16">
           <span className="accent-bar" aria-hidden />
@@ -204,7 +212,7 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* 5. Strong CTAs */}
+      {/* 6. Strong CTAs */}
       <section className="section-ink">
         <div className="container-page py-14 sm:py-16">
           <div className="max-w-2xl">
@@ -223,14 +231,18 @@ export default function HomePage() {
               <Link href="/check" className="btn-warhol btn-warhol-magenta">
                 Free Google check <ArrowRight className="h-5 w-5" />
               </Link>
-              <Link href="/starter" className="btn-warhol btn-warhol-outline !bg-transparent !text-white !border-white hover:!bg-white/10">
+              <Link href="/pay#starter" className="btn-warhol btn-warhol-outline !bg-transparent !text-white !border-white hover:!bg-white/10">
                 Starter $497
               </Link>
             </div>
             <p className="mt-5 text-sm text-stone-400">
               Prefer to pay for a lead pack?{" "}
-              <Link href="/pay" className="font-bold text-warhol-yellow underline underline-offset-2 hover:text-white">
-                Go to Pay
+              <Link href="/pay#hot" className="font-bold text-warhol-yellow underline underline-offset-2 hover:text-white">
+                Hot Lead Pack
+              </Link>
+              {" · "}
+              <Link href="/#pricing" className="font-bold text-warhol-yellow underline underline-offset-2 hover:text-white">
+                See all prices
               </Link>
             </p>
           </div>

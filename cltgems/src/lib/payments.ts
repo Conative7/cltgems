@@ -1,15 +1,31 @@
 /**
  * AI Bloom paid products + Stripe Payment Links.
  *
- * How to go live:
- * 1. Create a Stripe account → https://dashboard.stripe.com/register
- * 2. Products → Payment links → create one link per product below
- * 3. Paste each Payment Link URL into the matching stripeLink field
- *    OR set the NEXT_PUBLIC_STRIPE_LINK_* env vars in Vercel
- * 4. Redeploy
+ * ─── How to go live (Stripe Dashboard) ─────────────────────────────────────
+ * 1. Create / sign in: https://dashboard.stripe.com/register
+ * 2. Products → Payment links → “+ New” (or Product catalog → create product,
+ *    then “Create payment link” on that product).
+ * 3. Create ONE Payment Link per product below, matching the listed price:
+ *      cleanup       → Google listing cleanup · $97
+ *      hot           → Hot Lead Pack · $97
+ *      neighborhood  → Neighborhood List · $49
+ *      metro         → Metro Sweep · $197
+ *      starter       → AI Bloom Starter · $497
+ * 4. Copy each link (looks like https://buy.stripe.com/test_… or
+ *    https://buy.stripe.com/…). Paste into MANUAL_LINKS[id] below
+ *    OR set the matching Vercel env var (Preview + Production):
+ *      NEXT_PUBLIC_STRIPE_LINK_CLEANUP
+ *      NEXT_PUBLIC_STRIPE_LINK_HOT
+ *      NEXT_PUBLIC_STRIPE_LINK_NEIGHBORHOOD
+ *      NEXT_PUBLIC_STRIPE_LINK_METRO
+ *      NEXT_PUBLIC_STRIPE_LINK_STARTER
+ * 5. Redeploy. Env vars win over empty MANUAL_LINKS; non-empty MANUAL_LINKS
+ *    are used when the env var is unset.
  *
  * Until a link is set, the Pay button asks the customer to request an invoice
  * (Formspree → hello.aibloom@outlook.com) so you can send a Stripe link by hand.
+ *
+ * Do NOT invent or commit fake buy.stripe.com URLs — leave "" until real links exist.
  */
 
 export type PayProduct = {
@@ -20,7 +36,7 @@ export type PayProduct = {
   blurb: string;
   detail: string;
   highlight?: boolean;
-  /** Stripe Payment Link URL, e.g. https://buy.stripe.com/xxxx */
+  /** Stripe Payment Link URL, e.g. https://buy.stripe.com/xxxx — keep "" until real */
   stripeLink: string;
 };
 
@@ -30,24 +46,29 @@ function envLink(key: string, fallback = ""): string {
   return (v && v.trim()) || fallback;
 }
 
-/** Paste Stripe Payment Links here after you create them in Stripe. */
+/**
+ * Paste real Stripe Payment Links here after you create them in Dashboard.
+ * Keys MUST match product `id`. Leave "" until you have a real link.
+ * Example once live: cleanup: "https://buy.stripe.com/a1b2c3d4",
+ */
 const MANUAL_LINKS: Record<string, string> = {
-  neighborhood: "",
-  hot: "",
-  metro: "",
   cleanup: "",
+  hot: "",
+  neighborhood: "",
+  metro: "",
   starter: "",
 };
 
+/** Customer-facing order: cleanup → hot (popular) → neighborhood → metro → starter */
 export const PRODUCTS: PayProduct[] = [
   {
-    id: "neighborhood",
-    name: "Neighborhood List",
-    priceLabel: "$49",
-    priceCents: 4900,
-    blurb: "~50–100 leads · 1 niche · 1 area",
-    detail: "Clean CSV of local businesses for one niche in one Charlotte-area zone.",
-    stripeLink: envLink("NEXT_PUBLIC_STRIPE_LINK_NEIGHBORHOOD", MANUAL_LINKS.neighborhood),
+    id: "cleanup",
+    name: "Google listing cleanup",
+    priceLabel: "$97",
+    priceCents: 9700,
+    blurb: "Checklist / PDF after the free check",
+    detail: "Plain-English cleanup plan for a Google Business Profile. White-label available.",
+    stripeLink: envLink("NEXT_PUBLIC_STRIPE_LINK_CLEANUP", MANUAL_LINKS.cleanup),
   },
   {
     id: "hot",
@@ -60,6 +81,15 @@ export const PRODUCTS: PayProduct[] = [
     stripeLink: envLink("NEXT_PUBLIC_STRIPE_LINK_HOT", MANUAL_LINKS.hot),
   },
   {
+    id: "neighborhood",
+    name: "Neighborhood List",
+    priceLabel: "$49",
+    priceCents: 4900,
+    blurb: "~50–100 leads · 1 niche · 1 area",
+    detail: "Clean CSV of local businesses for one niche in one Charlotte-area zone.",
+    stripeLink: envLink("NEXT_PUBLIC_STRIPE_LINK_NEIGHBORHOOD", MANUAL_LINKS.neighborhood),
+  },
+  {
     id: "metro",
     name: "Metro Sweep",
     priceLabel: "$197",
@@ -67,15 +97,6 @@ export const PRODUCTS: PayProduct[] = [
     blurb: "Multi-suburb · up to ~300–500",
     detail: "Wider Charlotte metro coverage for agencies and resellers.",
     stripeLink: envLink("NEXT_PUBLIC_STRIPE_LINK_METRO", MANUAL_LINKS.metro),
-  },
-  {
-    id: "cleanup",
-    name: "Google listing cleanup",
-    priceLabel: "$97",
-    priceCents: 9700,
-    blurb: "Checklist / PDF after the free check",
-    detail: "Plain-English cleanup plan for a Google Business Profile. White-label available.",
-    stripeLink: envLink("NEXT_PUBLIC_STRIPE_LINK_CLEANUP", MANUAL_LINKS.cleanup),
   },
   {
     id: "starter",
@@ -94,4 +115,13 @@ export function getProduct(id: string): PayProduct | undefined {
 
 export function hasAnyLiveCheckout(): boolean {
   return PRODUCTS.some((p) => Boolean(p.stripeLink));
+}
+
+/**
+ * Dev/ops hint only — never render on the public site.
+ * Use when logging or documenting which env/manual slot is still empty.
+ */
+export function stripePlaceholderHint(productId: string): string {
+  const envKey = `NEXT_PUBLIC_STRIPE_LINK_${productId.toUpperCase()}`;
+  return `Paste Stripe Payment Link into MANUAL_LINKS.${productId} or Vercel env ${envKey} (e.g. https://buy.stripe.com/…)`;
 }
