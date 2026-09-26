@@ -1,0 +1,331 @@
+@import "tailwindcss";
+
+:root {
+  /* Legacy teal (sitewide .btn / .card / forms stay stable) */
+  --gem: #0f766e;
+  --gem-dark: #115e59;
+  --gem-soft: #ccfbf1;
+  --gem-mist: #f0fdfa;
+  --warm: #faf7f2;
+  --ink: #0c0a09;
+  --muted: #78716c;
+  --border: #e7e5e4;
+  --card: #ffffff;
+  --accent: #0f766e;
+  --accent-soft: #ccfbf1;
+  --content-bg: #faf7f2;
+  --success: #059669;
+  --gold: #d97706;
+
+  /* Warhol editorial palette */
+  --warhol-magenta: #e91e8c;
+  --warhol-teal: #0d9488;
+  --warhol-yellow: #f5c518;
+  --warhol-indigo: #312e81;
+  --warhol-ink: #0c0a09;
+  --warhol-cream: #faf7f2;
+}
+
+@theme inline {
+  --color-gem: var(--gem);
+  --color-gem-dark: var(--gem-dark);
+  --color-gem-soft: var(--gem-soft);
+  --color-gem-mist: var(--gem-mist);
+  --color-warm: var(--warm);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-card: var(--card);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-content-bg: var(--content-bg);
+  --color-success: var(--success);
+  --color-gold: var(--gold);
+  --color-warhol-magenta: var(--warhol-magenta);
+  --color-warhol-teal: var(--warhol-teal);
+  --color-warhol-yellow: var(--warhol-yellow);
+  --color-warhol-indigo: var(--warhol-indigo);
+  --color-warhol-ink: var(--warhol-ink);
+  --color-warhol-cream: var(--warhol-cream);
+  --font-sans: var(--font-dm);
+  --font-display: var(--font-nunito);
+}
+
+* { box-sizing: border-box; }
+
+html, body { height: 100%; }
+
+body {
+  margin: 0;
+  background: var(--warm);
+  color: var(--ink);
+  font-family: var(--font-dm), system-ui, sans-serif;
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-nunito), var(--font-dm), system-ui, sans-serif;
+}
+
+.input {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.625rem;
+  padding: 0.55rem 0.85rem;
+  background: white;
+  color: var(--ink);
+  font-size: 0.9375rem;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input:focus {
+  border-color: var(--gem);
+  box-shadow: 0 0 0 3px rgba(15, 118, 110, 0.15);
+}
+
+.label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--muted);
+  margin-bottom: 0.35rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  border-radius: 0.625rem;
+  padding: 0.6rem 1.1rem;
+  font-size: 0.9rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, opacity 0.15s;
+}
+.btn:disabled { opacity: 0.5; cursor: not-allowed; }
+.btn-primary { background: var(--gem); color: white; }
+.btn-primary:hover:not(:disabled) { background: var(--gem-dark); }
+.btn-secondary { background: white; color: var(--ink); border-color: var(--border); }
+.btn-secondary:hover:not(:disabled) { background: #fafaf9; }
+.btn-danger { background: #fee2e2; color: #991b1b; border-color: #fecaca; }
+.btn-danger:hover:not(:disabled) { background: #fecaca; }
+
+/* Bold Warhol CTAs (homepage / marketing — does not replace .btn-primary sitewide) */
+.btn-warhol {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.45rem;
+  border-radius: 0.75rem;
+  padding: 0.85rem 1.35rem;
+  font-size: 1rem;
+  font-weight: 800;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform 0.15s, background 0.15s, box-shadow 0.15s;
+}
+.btn-warhol:hover { transform: translateY(-1px); }
+.btn-warhol-magenta {
+  background: var(--warhol-magenta);
+  color: white;
+  box-shadow: 4px 4px 0 var(--warhol-ink);
+}
+.btn-warhol-magenta:hover { background: #c91678; }
+.btn-warhol-ink {
+  background: var(--warhol-ink);
+  color: white;
+  box-shadow: 4px 4px 0 var(--warhol-yellow);
+}
+.btn-warhol-ink:hover { background: #1c1917; }
+.btn-warhol-outline {
+  background: white;
+  color: var(--warhol-ink);
+  border-color: var(--warhol-ink);
+  box-shadow: 4px 4px 0 var(--warhol-teal);
+}
+.btn-warhol-outline:hover { background: var(--warhol-cream); }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: 0 1px 2px rgba(28, 25, 23, 0.04);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  border-radius: 999px;
+  padding: 0.15rem 0.55rem;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+.badge-word { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
+.badge-pdf { background: #fef2f2; color: #b91c1c; border: 1px solid #fecaca; }
+.badge-gem { background: var(--gem-soft); color: var(--gem-dark); border: 1px solid #99f6e4; }
+.badge-demo { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
+
+.invoice-paper {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 0.5rem;
+  padding: 1.5rem;
+  box-shadow: 0 8px 24px rgba(28, 25, 23, 0.06);
+}
+
+.container-page {
+  width: 100%;
+  max-width: 72rem;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+}
+
+/* ——— Warhol editorial utilities ——— */
+
+.hero-panel {
+  position: relative;
+  overflow: hidden;
+  border-radius: 1.25rem;
+  border: 3px solid var(--warhol-ink);
+  box-shadow: 8px 8px 0 var(--warhol-magenta);
+  background: var(--warhol-cream);
+}
+
+.hero-panel-alt {
+  box-shadow: 8px 8px 0 var(--warhol-yellow);
+}
+
+.warhol-card {
+  position: relative;
+  background: white;
+  border: 3px solid var(--warhol-ink);
+  border-radius: 1.25rem;
+  padding: 1.5rem 1.35rem;
+  box-shadow: 6px 6px 0 var(--warhol-ink);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.warhol-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: 8px 8px 0 var(--warhol-ink);
+}
+.warhol-card-magenta { box-shadow: 6px 6px 0 var(--warhol-magenta); }
+.warhol-card-magenta:hover { box-shadow: 8px 8px 0 var(--warhol-magenta); }
+.warhol-card-teal { box-shadow: 6px 6px 0 var(--warhol-teal); }
+.warhol-card-teal:hover { box-shadow: 8px 8px 0 var(--warhol-teal); }
+.warhol-card-yellow { box-shadow: 6px 6px 0 var(--warhol-yellow); }
+.warhol-card-yellow:hover { box-shadow: 8px 8px 0 var(--warhol-yellow); }
+.warhol-card-indigo { box-shadow: 6px 6px 0 var(--warhol-indigo); }
+.warhol-card-indigo:hover { box-shadow: 8px 8px 0 var(--warhol-indigo); }
+
+.warhol-num {
+  font-family: var(--font-nunito), system-ui, sans-serif;
+  font-size: clamp(2.5rem, 6vw, 3.5rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--warhol-ink);
+  opacity: 0.12;
+}
+
+.warhol-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 2px solid var(--warhol-ink);
+  background: var(--warhol-yellow);
+  color: var(--warhol-ink);
+  padding: 0.35rem 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border-radius: 999px;
+}
+
+.stat-strip {
+  display: grid;
+  gap: 0;
+  border: 3px solid var(--warhol-ink);
+  border-radius: 1rem;
+  overflow: hidden;
+  background: white;
+}
+.stat-strip-item {
+  padding: 1.1rem 1.25rem;
+  border-bottom: 2px solid var(--warhol-ink);
+  background: white;
+}
+.stat-strip-item:last-child { border-bottom: none; }
+@media (min-width: 640px) {
+  .stat-strip {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .stat-strip-item {
+    border-bottom: none;
+    border-right: 2px solid var(--warhol-ink);
+  }
+  .stat-strip-item:last-child { border-right: none; }
+}
+
+.section-ink {
+  background: var(--warhol-ink);
+  color: white;
+}
+.section-cream {
+  background: var(--warhol-cream);
+}
+.section-magenta {
+  background: var(--warhol-magenta);
+  color: white;
+}
+
+.headline-xl {
+  font-family: var(--font-nunito), system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.035em;
+  line-height: 1.05;
+  font-size: clamp(2.35rem, 6.5vw, 4.25rem);
+  color: var(--warhol-ink);
+}
+
+.headline-lg {
+  font-family: var(--font-nunito), system-ui, sans-serif;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  font-size: clamp(1.75rem, 4vw, 2.75rem);
+  color: var(--warhol-ink);
+}
+
+.accent-bar {
+  display: inline-block;
+  width: 3rem;
+  height: 0.35rem;
+  background: var(--warhol-magenta);
+  border-radius: 999px;
+}
+
+/* touch-friendly form controls on small screens */
+@media (max-width: 767px) {
+  .input {
+    font-size: 1rem;
+    padding: 0.7rem 0.9rem;
+    min-height: 2.75rem;
+  }
+  .btn {
+    min-height: 2.75rem;
+  }
+  .btn-warhol {
+    min-height: 3rem;
+    width: 100%;
+  }
+}
