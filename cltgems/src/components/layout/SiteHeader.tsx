@@ -2,8 +2,13 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Sparkles, Menu, X } from "lucide-react";
+import { Sparkles, Menu, X, Phone } from "lucide-react";
 import { useState } from "react";
+import {
+  SITE_PHONE_DISPLAY,
+  SITE_PHONE_TEL,
+  hasClickToCall,
+} from "@/lib/siteContact";
 
 const NAV = [
   { href: "/intel", label: "Find leads" },
@@ -18,6 +23,7 @@ const NAV = [
 export function SiteHeader() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
+  const showPhone = hasClickToCall();
 
   return (
     <header className="sticky top-0 z-40 border-b border-border bg-warm/95 backdrop-blur">
@@ -52,16 +58,36 @@ export function SiteHeader() {
               </Link>
             );
           })}
+          {showPhone ? (
+            <a
+              href={`tel:${SITE_PHONE_TEL}`}
+              className="ml-2 inline-flex items-center gap-1.5 rounded-lg bg-gem px-3 py-2 text-sm font-bold text-white hover:bg-gem-dark transition-colors"
+            >
+              <Phone className="h-4 w-4" />
+              {SITE_PHONE_DISPLAY}
+            </a>
+          ) : null}
         </nav>
 
-        <button
-          type="button"
-          className="md:hidden btn btn-secondary p-2 min-h-11 min-w-11"
-          aria-label={open ? "Close menu" : "Open menu"}
-          onClick={() => setOpen((v) => !v)}
-        >
-          {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          {showPhone ? (
+            <a
+              href={`tel:${SITE_PHONE_TEL}`}
+              className="btn btn-primary p-2 min-h-11 min-w-11"
+              aria-label={`Call ${SITE_PHONE_DISPLAY}`}
+            >
+              <Phone className="h-5 w-5" />
+            </a>
+          ) : null}
+          <button
+            type="button"
+            className="btn btn-secondary p-2 min-h-11 min-w-11"
+            aria-label={open ? "Close menu" : "Open menu"}
+            onClick={() => setOpen((v) => !v)}
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
       </div>
 
       {open ? (
@@ -76,6 +102,16 @@ export function SiteHeader() {
               {item.label}
             </Link>
           ))}
+          {showPhone ? (
+            <a
+              href={`tel:${SITE_PHONE_TEL}`}
+              className="flex items-center gap-2 rounded-lg px-3 py-3 text-sm font-bold text-gem"
+              onClick={() => setOpen(false)}
+            >
+              <Phone className="h-4 w-4" />
+              Call {SITE_PHONE_DISPLAY}
+            </a>
+          ) : null}
         </div>
       ) : null}
     </header>

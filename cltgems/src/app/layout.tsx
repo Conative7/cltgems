@@ -18,7 +18,7 @@ const nunito = Nunito({
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.aibloom.agency"),
   title: {
-    default: "AI Bloom — Charlotte invoices, leads & free Google listing checks",
+    default: "AI Bloom | Charlotte leads & invoices",
     template: "%s | AI Bloom",
   },
   description:
@@ -39,13 +39,13 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "https://www.aibloom.agency",
     siteName: "AI Bloom",
-    title: "AI Bloom — Charlotte tools that get you found and paid",
+    title: "AI Bloom | Charlotte leads & invoices",
     description:
       "Free Google listing checks, lead packs, job pricing, and invoices without Canva. Built in Charlotte.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "AI Bloom — Charlotte invoices, leads & free Google checks",
+    title: "AI Bloom | Charlotte leads & invoices",
     description:
       "AI made simple. Free Google listing checks, Find leads, Price a job, invoices without Canva.",
   },
