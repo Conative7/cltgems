@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: "AI Bloom",
     title: "AI Bloom | Charlotte leads & invoices",
     description:
-      "Free Google listing checks, lead packs, job pricing, and invoices without Canva. Built in Charlotte.",
+      "AI that gets Charlotte businesses found and paid. Free Google scorecards, lead packs, and invoices without Canva.",
   },
   twitter: {
     card: "summary_large_image",

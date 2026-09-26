@@ -1,62 +1,52 @@
 import Link from "next/link";
 import { LocalBusinessJsonLd } from "@/components/seo/JsonLd";
-import {
-  ArrowRight,
-  Calculator,
-  FileText,
-  Radar,
-  Sparkles,
-  BadgeDollarSign,
-  Home,
-  Building2,
-} from "lucide-react";
+import { ArrowRight, CheckCircle2 } from "lucide-react";
 
-const PATHS = [
+const SERVICES = [
   {
+    num: "01",
+    href: "/check",
+    title: "Free Google scorecard",
+    desc: "See how your Charlotte listing and website look to customers — gaps, wins, and what to fix first. Free.",
+    cta: "Check your listing",
+    cardClass: "warhol-card warhol-card-magenta",
+    accent: "bg-warhol-magenta text-white",
+  },
+  {
+    num: "02",
     href: "/intel",
-    title: "Need leads",
-    desc: "Order a Charlotte lead list — per task, clean CSV. No monthly subscription.",
+    title: "Lead packs",
+    desc: "Order a clean Charlotte lead list by trade — per task CSV. No monthly subscription.",
     cta: "Find leads",
-    icon: Radar,
-    accent: "bg-gem text-white",
-    ring: "border-gem/30 hover:border-gem",
+    cardClass: "warhol-card warhol-card-teal",
+    accent: "bg-warhol-teal text-white",
   },
   {
+    num: "03",
     href: "/invoices",
-    title: "Need an invoice",
-    desc: "Professional Word or PDF — works on a library PC. No Canva. No account maze.",
+    title: "Invoice without Canva",
+    desc: "Professional Word or PDF on any PC — even a library computer. Fill, download, clear your session.",
     cta: "Make an invoice",
-    icon: FileText,
-    accent: "bg-gem-dark text-white",
-    ring: "border-gem/30 hover:border-gem",
-  },
-  {
-    href: "/price?trade=cleaning&audience=owner",
-    title: "Need a price",
-    desc: "Free cleaning calculator — ballpark a job, then turn it into an invoice in one tap.",
-    cta: "Price a job",
-    icon: Calculator,
-    accent: "bg-[#0f766e] text-white",
-    ring: "border-gem/30 hover:border-gem",
+    cardClass: "warhol-card warhol-card-yellow",
+    accent: "bg-warhol-yellow text-warhol-ink",
   },
 ] as const;
 
-const MORE = [
-  { href: "/check", label: "Free Google listing check" },
-  { href: "/add", label: "Add your business" },
-  { href: "/about#connect", label: "Connect with us" },
-];
-
-const TRUST_PHOTOS = [
+const STEPS = [
   {
-    src: "/images/charlotte-local.jpg",
-    alt: "Charlotte-area service work — AI Bloom helps local businesses get found",
-    caption: "Built for Charlotte trades & local services",
+    num: "1",
+    title: "Start free",
+    desc: "Run the Google scorecard or price a cleaning job. No account maze.",
   },
   {
-    src: "/images/invoice-desk.jpg",
-    alt: "Professional invoice on desk and tablet — invoice without Canva",
-    caption: "Invoices that look paid-for, without Canva",
+    num: "2",
+    title: "Pick what you need",
+    desc: "Leads when you want more jobs. Invoices when you need to get paid.",
+  },
+  {
+    num: "3",
+    title: "Get done",
+    desc: "Download a CSV or Word/PDF — or book Starter if you want us to set it up with you.",
   },
 ] as const;
 
@@ -64,169 +54,228 @@ export default function HomePage() {
   return (
     <div>
       <LocalBusinessJsonLd />
-      <section className="border-b border-border bg-gradient-to-b from-gem-mist to-warm">
-        <div className="container-page py-12 sm:py-16">
-          <div className="grid gap-10 lg:grid-cols-2 lg:items-center">
+
+      {/* 1. Bold hero */}
+      <section className="section-cream border-b-4 border-warhol-ink">
+        <div className="container-page py-12 sm:py-16 lg:py-20">
+          <div className="grid gap-10 lg:grid-cols-2 lg:items-center lg:gap-12">
             <div>
-              <p className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-xs font-bold text-gem-dark">
-                <Sparkles className="h-3.5 w-3.5" />
-                AI Bloom · Charlotte · AI made simple
-              </p>
-              <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight">
-                What do you need today?
+              <p className="warhol-eyebrow">AI Bloom · Charlotte · AI made simple</p>
+              <h1 className="headline-xl mt-5">
+                AI that gets Charlotte businesses found and paid.
               </h1>
-              <p className="mt-3 max-w-2xl text-lg text-stone-600 leading-relaxed">
-                Three simple tools for real Charlotte businesses — get found, price the job, get paid.
-                No jargon. No overwhelm.
+              <p className="mt-5 max-w-xl text-lg sm:text-xl text-stone-600 leading-relaxed font-medium">
+                Free Google scorecards, lead packs, and invoices without Canva — plain English,
+                built for local trades and services.
+              </p>
+              <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+                <Link href="/check" className="btn-warhol btn-warhol-magenta">
+                  Free Google check <ArrowRight className="h-5 w-5" />
+                </Link>
+                <Link href="/intel" className="btn-warhol btn-warhol-outline">
+                  Find leads
+                </Link>
+              </div>
+              <p className="mt-4 text-sm text-muted font-semibold">
+                Or{" "}
+                <Link href="/invoices" className="text-warhol-magenta underline underline-offset-2 hover:text-warhol-ink">
+                  make an invoice
+                </Link>{" "}
+                ·{" "}
+                <Link href="/price" className="text-warhol-teal underline underline-offset-2 hover:text-warhol-ink">
+                  price a job
+                </Link>
               </p>
             </div>
-            <div className="relative">
+
+            <div className="hero-panel">
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
-                src="/images/hero-desk.jpg"
-                alt="Charlotte small-business owner using AI Bloom tools on a laptop"
+                src="/images/warhol-bloom.jpg"
+                alt="AI Bloom Warhol-style pop art bloom — bold color for Charlotte small business"
                 width={1200}
-                height={800}
-                className="w-full rounded-2xl border border-border shadow-lg object-cover aspect-[4/3]"
+                height={1200}
+                className="w-full object-cover aspect-square sm:aspect-[4/3] lg:aspect-square"
                 fetchPriority="high"
               />
             </div>
           </div>
-
-          <div className="mt-8 grid gap-4 sm:grid-cols-3">
-            {PATHS.map((p) => {
-              const Icon = p.icon;
-              return (
-                <Link
-                  key={p.href}
-                  href={p.href}
-                  className={
-                    "card group flex flex-col p-5 sm:p-6 border-2 transition-all hover:shadow-lg " +
-                    p.ring
-                  }
-                >
-                  <span
-                    className={
-                      "flex h-12 w-12 items-center justify-center rounded-xl " + p.accent
-                    }
-                  >
-                    <Icon className="h-6 w-6" />
-                  </span>
-                  <h2 className="mt-4 font-display text-xl font-extrabold text-ink group-hover:text-gem">
-                    {p.title}
-                  </h2>
-                  <p className="mt-2 flex-1 text-sm text-muted leading-relaxed">{p.desc}</p>
-                  <span className="mt-4 inline-flex items-center gap-1 text-sm font-bold text-gem">
-                    {p.cta}{" "}
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-                  </span>
-                </Link>
-              );
-            })}
-          </div>
-
-          <p className="mt-6 text-sm text-muted">
-            Tip: Price a job →{" "}
-            <strong className="text-ink">Estimate</strong> → invoice → download Word or PDF. Done.
-          </p>
         </div>
       </section>
 
-      <section className="border-b border-border bg-white">
-        <div className="container-page py-10 sm:py-12">
-          <h2 className="font-display text-2xl font-extrabold text-ink">
-            Real tools. Real Charlotte businesses.
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm text-stone-600 leading-relaxed">
-            Photos beat empty pages. Here&apos;s the vibe we build for — local work, clear paperwork,
-            and getting paid without the tech headache.
-          </p>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2">
-            {TRUST_PHOTOS.map((photo) => (
-              <figure key={photo.src} className="overflow-hidden rounded-2xl border border-border bg-warm">
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src={photo.src}
-                  alt={photo.alt}
-                  width={1000}
-                  height={667}
-                  className="w-full object-cover aspect-[3/2]"
-                  loading="lazy"
-                />
-                <figcaption className="px-4 py-3 text-sm font-semibold text-stone-700">
-                  {photo.caption}
-                </figcaption>
-              </figure>
+      {/* 2. Punch line / qualitative strip */}
+      <section className="border-b-4 border-warhol-ink bg-white">
+        <div className="container-page py-8 sm:py-10">
+          <div className="stat-strip">
+            <div className="stat-strip-item bg-warhol-yellow/30">
+              <p className="font-display text-lg font-extrabold text-warhol-ink">No monthly trap</p>
+              <p className="mt-1 text-sm text-stone-600 leading-relaxed">
+                Lead packs are per task. You buy when you need jobs — not a subscription you forget.
+              </p>
+            </div>
+            <div className="stat-strip-item bg-warhol-teal/10">
+              <p className="font-display text-lg font-extrabold text-warhol-ink">Works on a library PC</p>
+              <p className="mt-1 text-sm text-stone-600 leading-relaxed">
+                Invoice builder downloads Word or PDF. Clear your session before you leave.
+              </p>
+            </div>
+            <div className="stat-strip-item bg-warhol-magenta/10">
+              <p className="font-display text-lg font-extrabold text-warhol-ink">Charlotte-first</p>
+              <p className="mt-1 text-sm text-stone-600 leading-relaxed">
+                Built for local trades and services — warm, plain English, AI made simple.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 3. What we build — numbered cards */}
+      <section className="section-cream border-b-4 border-warhol-ink">
+        <div className="container-page py-12 sm:py-16">
+          <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+            <div>
+              <span className="accent-bar" aria-hidden />
+              <h2 className="headline-lg mt-3">What we build</h2>
+              <p className="mt-2 max-w-xl text-stone-600 leading-relaxed">
+                Three tools you can use today. Price a job sits right beside them when you need a
+                ballpark.
+              </p>
+            </div>
+            <Link
+              href="/price?trade=cleaning&audience=owner"
+              className="text-sm font-bold text-warhol-indigo underline underline-offset-2 hover:text-warhol-magenta shrink-0"
+            >
+              Price a cleaning job →
+            </Link>
+          </div>
+
+          <div className="mt-8 grid gap-5 sm:grid-cols-3">
+            {SERVICES.map((s) => (
+              <Link key={s.href} href={s.href} className={s.cardClass + " group flex flex-col"}>
+                <div className="flex items-start justify-between gap-3">
+                  <span
+                    className={
+                      "inline-flex h-10 w-10 items-center justify-center rounded-lg text-sm font-black " +
+                      s.accent
+                    }
+                  >
+                    {s.num}
+                  </span>
+                  <span className="warhol-num select-none" aria-hidden>
+                    {s.num}
+                  </span>
+                </div>
+                <h3 className="mt-3 font-display text-xl font-extrabold text-warhol-ink group-hover:text-warhol-magenta transition-colors">
+                  {s.title}
+                </h3>
+                <p className="mt-2 flex-1 text-sm text-stone-600 leading-relaxed">{s.desc}</p>
+                <span className="mt-4 inline-flex items-center gap-1.5 text-sm font-extrabold text-warhol-ink">
+                  {s.cta}{" "}
+                  <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                </span>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="container-page py-10 sm:py-12">
-        <div className="card border-gem/25 bg-white p-5 sm:p-6">
-          <h3 className="font-display text-lg font-extrabold text-ink">
-            Free cleaning price calculator
-          </h3>
-          <p className="mt-1 text-sm text-stone-700 leading-relaxed max-w-2xl">
-            Owners price jobs with editable rates. Homeowners get a free Charlotte-area ballpark.
-            Unlock Low / Target / High with a quick contact — no spam, no payment.
+      {/* 4. How it works */}
+      <section className="bg-white border-b-4 border-warhol-ink">
+        <div className="container-page py-12 sm:py-16">
+          <span className="accent-bar" aria-hidden />
+          <h2 className="headline-lg mt-3">How it works</h2>
+          <p className="mt-2 max-w-xl text-stone-600 leading-relaxed">
+            Short path. No jargon. No overwhelm.
           </p>
-          <div className="mt-4 flex flex-col sm:flex-row gap-3">
-            <Link href="/price?trade=cleaning&audience=owner" className="btn btn-primary">
-              <Building2 className="h-4 w-4" />
-              I run a cleaning business
-            </Link>
-            <Link href="/price?trade=cleaning&audience=homeowner" className="btn btn-secondary">
-              <Home className="h-4 w-4" />
-              I need a cleaning quote
-            </Link>
-          </div>
-        </div>
 
-        <div className="mt-6 card border-gem/25 bg-gem-mist p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
-          <div className="flex-1">
-            <h3 className="font-display text-lg font-extrabold text-gem-dark">
-              Invoice without Canva
-            </h3>
-            <p className="mt-1 text-sm text-stone-700 leading-relaxed max-w-2xl">
-              Built for shared and library PCs. Fill the form, download Word or PDF, then clear your
-              session before you leave — so the next person never sees your draft.
+          <ol className="mt-8 grid gap-5 sm:grid-cols-3">
+            {STEPS.map((step) => (
+              <li key={step.num} className="warhol-card warhol-card-indigo">
+                <span className="inline-flex h-9 w-9 items-center justify-center rounded-full bg-warhol-indigo text-white text-sm font-black">
+                  {step.num}
+                </span>
+                <h3 className="mt-3 font-display text-lg font-extrabold text-warhol-ink">
+                  {step.title}
+                </h3>
+                <p className="mt-1.5 text-sm text-stone-600 leading-relaxed">{step.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
+      {/* 5. Strong CTAs */}
+      <section className="section-ink">
+        <div className="container-page py-14 sm:py-16">
+          <div className="max-w-2xl">
+            <p className="inline-flex items-center gap-2 rounded-full border-2 border-warhol-yellow bg-warhol-yellow px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-warhol-ink">
+              <CheckCircle2 className="h-3.5 w-3.5" />
+              Free to start
+            </p>
+            <h2 className="mt-5 font-display text-3xl sm:text-4xl lg:text-5xl font-black tracking-tight text-white leading-tight">
+              Find your gaps in minutes.
+            </h2>
+            <p className="mt-4 text-lg text-stone-300 leading-relaxed max-w-xl">
+              Run the free Google listing scorecard — then grab leads, invoices, or Starter when
+              you&apos;re ready.
+            </p>
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link href="/check" className="btn-warhol btn-warhol-magenta">
+                Free Google check <ArrowRight className="h-5 w-5" />
+              </Link>
+              <Link href="/starter" className="btn-warhol btn-warhol-outline !bg-transparent !text-white !border-white hover:!bg-white/10">
+                Starter $497
+              </Link>
+            </div>
+            <p className="mt-5 text-sm text-stone-400">
+              Prefer to pay for a lead pack?{" "}
+              <Link href="/pay" className="font-bold text-warhol-yellow underline underline-offset-2 hover:text-white">
+                Go to Pay
+              </Link>
             </p>
           </div>
-          <Link href="/invoices" className="btn btn-primary shrink-0">
-            Open invoice builder <ArrowRight className="h-4 w-4" />
-          </Link>
         </div>
+      </section>
 
-        <div className="mt-6 card border-gem/25 p-5 sm:p-6 flex flex-col sm:flex-row sm:items-center gap-4">
-          <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-gem-soft text-gem-dark">
-            <BadgeDollarSign className="h-6 w-6" />
-          </span>
-          <div className="flex-1">
-            <h3 className="font-display text-lg font-extrabold text-ink">
-              Ready for done-with-you setup?
-            </h3>
-            <p className="mt-1 text-sm text-stone-700 leading-relaxed max-w-2xl">
-              AI Bloom Starter for Operators — $497. We tune your rates, invoice pack, and AI
-              follow-up scripts so you quote and get paid faster. One week.
-            </p>
+      {/* Soft secondary strip — demoted desk photos, gender/race neutral captions */}
+      <section className="section-cream border-t-4 border-warhol-ink">
+        <div className="container-page py-10 sm:py-12">
+          <h2 className="font-display text-xl font-extrabold text-warhol-ink">
+            Built for real Charlotte work
+          </h2>
+          <p className="mt-1 max-w-2xl text-sm text-stone-600 leading-relaxed">
+            Local services energy — clear paperwork, getting found, getting paid. No tech headache.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2">
+            <figure className="overflow-hidden rounded-2xl border-2 border-warhol-ink bg-white shadow-[4px_4px_0_var(--warhol-teal)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/charlotte-local.jpg"
+                alt="Charlotte-area service work — AI Bloom helps local businesses get found"
+                width={1000}
+                height={667}
+                className="w-full object-cover aspect-[3/2]"
+                loading="lazy"
+              />
+              <figcaption className="px-4 py-3 text-sm font-bold text-stone-700">
+                Built for Charlotte trades &amp; local services
+              </figcaption>
+            </figure>
+            <figure className="overflow-hidden rounded-2xl border-2 border-warhol-ink bg-white shadow-[4px_4px_0_var(--warhol-magenta)]">
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/images/invoice-desk.jpg"
+                alt="Professional invoice on desk and tablet — invoice without Canva"
+                width={1000}
+                height={667}
+                className="w-full object-cover aspect-[3/2]"
+                loading="lazy"
+              />
+              <figcaption className="px-4 py-3 text-sm font-bold text-stone-700">
+                Invoices that look paid-for, without Canva
+              </figcaption>
+            </figure>
           </div>
-          <Link href="/starter" className="btn btn-primary shrink-0">
-            Get started <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-stone-600">
-          <span className="text-muted font-medium">Also:</span>
-          {MORE.map((m) => (
-            <Link
-              key={m.href}
-              href={m.href}
-              className="hover:text-gem underline-offset-2 hover:underline"
-            >
-              {m.label}
-            </Link>
-          ))}
         </div>
       </section>
     </div>
