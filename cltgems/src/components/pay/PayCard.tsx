@@ -43,15 +43,17 @@ export function PayCard({ product }: Props) {
     <article
       id={product.id}
       className={
-        "card flex flex-col p-5 sm:p-6 scroll-mt-24 " +
-        (product.highlight ? "border-gem/40 ring-2 ring-gem/15 bg-gem-mist/40" : "")
+        "flex flex-col p-5 sm:p-6 scroll-mt-24 rounded-2xl border-2 border-warhol-ink bg-white " +
+        (product.highlight
+          ? "shadow-[6px_6px_0_var(--warhol-magenta)] bg-warhol-cream"
+          : "shadow-[6px_6px_0_var(--warhol-ink)]")
       }
     >
       {product.highlight ? (
-        <span className="badge badge-gem w-fit">Most popular</span>
+        <span className="warhol-eyebrow !text-[10px] !py-1 w-fit">Most popular</span>
       ) : null}
       <h3 className="mt-2 font-display text-xl font-bold text-ink">{product.name}</h3>
-      <p className="mt-1 font-display text-3xl font-extrabold text-gem-dark">{product.priceLabel}</p>
+      <p className="mt-1 font-display text-3xl font-extrabold text-warhol-magenta">{product.priceLabel}</p>
       <p className="mt-2 text-sm font-semibold text-stone-700">{product.blurb}</p>
       <p className="mt-2 text-sm text-muted leading-relaxed flex-1">{product.detail}</p>
 
@@ -60,13 +62,13 @@ export function PayCard({ product }: Props) {
           href={product.stripeLink}
           target="_blank"
           rel="noopener noreferrer"
-          className="btn btn-primary mt-5 w-full"
+          className="btn-warhol btn-warhol-magenta mt-5 w-full !py-3"
         >
           <CreditCard className="h-4 w-4" />
           Pay {product.priceLabel} <ArrowRight className="h-4 w-4" />
         </a>
       ) : done ? (
-        <p className="mt-5 rounded-xl bg-gem-mist px-4 py-3 text-sm font-semibold text-gem-dark">
+        <p className="mt-5 rounded-xl border-2 border-warhol-ink bg-warhol-yellow/40 px-4 py-3 text-sm font-semibold text-warhol-ink">
           Got it — we’ll email a secure pay link to {email} soon.
         </p>
       ) : showRequest ? (
@@ -96,7 +98,7 @@ export function PayCard({ product }: Props) {
             type="button"
             disabled={busy || !email.trim()}
             onClick={requestInvoice}
-            className="btn btn-primary w-full disabled:opacity-60"
+            className="btn-warhol btn-warhol-magenta w-full !py-3 disabled:opacity-60"
           >
             {busy ? <Loader2 className="h-4 w-4 animate-spin" /> : null}
             Request pay link
@@ -110,7 +112,7 @@ export function PayCard({ product }: Props) {
           </button>
         </div>
       ) : (
-        <button type="button" className="btn btn-primary mt-5 w-full" onClick={() => setShowRequest(true)}>
+        <button type="button" className="btn-warhol btn-warhol-magenta mt-5 w-full !py-3" onClick={() => setShowRequest(true)}>
           <CreditCard className="h-4 w-4" />
           Buy {product.priceLabel} <ArrowRight className="h-4 w-4" />
         </button>

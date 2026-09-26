@@ -9,14 +9,24 @@ export const metadata: Metadata = {
 
 export default function LeadsPage() {
   return (
-    <div className="container-page py-10 sm:py-12 max-w-5xl">
-      <p className="text-xs font-bold uppercase tracking-wide text-muted mb-2">Private · not in main nav</p>
-      <h1 className="font-display text-3xl font-extrabold text-ink">Google check leads</h1>
-      <p className="mt-2 text-stone-600 mb-8 max-w-2xl">
-        Best-effort store of /check lead magnet submissions. Use Formspree + optional webhook for
-        durability.
-      </p>
-      <LeadsTable />
+    <div>
+      <section className="section-ink border-b-4 border-warhol-yellow">
+        <div className="container-page py-10 sm:py-12 max-w-5xl">
+          <p className="inline-flex items-center rounded-full border-2 border-warhol-yellow bg-warhol-yellow px-3 py-1 text-xs font-extrabold uppercase tracking-wider text-warhol-ink">
+            Private · not in main nav
+          </p>
+          <h1 className="mt-4 font-display text-3xl sm:text-4xl font-black text-white tracking-tight">
+            Google check leads
+          </h1>
+          <p className="mt-3 text-stone-300 max-w-2xl leading-relaxed">
+            Best-effort store of /check lead magnet submissions. Use Formspree + optional webhook for
+            durability.
+          </p>
+        </div>
+      </section>
+      <div className="container-page py-8 sm:py-10 max-w-5xl">
+        <LeadsTable />
+      </div>
     </div>
   );
 }

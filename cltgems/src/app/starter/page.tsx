@@ -95,25 +95,24 @@ const FAQ = [
 export default function StarterPage() {
   return (
     <div>
-      {/* Hero */}
-      <section className="border-b border-border bg-gradient-to-b from-gem-mist to-warm">
+      <section className="section-cream border-b-4 border-warhol-ink">
         <div className="container-page py-12 sm:py-16">
-          <p className="inline-flex items-center gap-1.5 rounded-full border border-border bg-white px-3 py-1 text-xs font-bold text-gem-dark">
+          <p className="warhol-eyebrow">
             <Sparkles className="h-3.5 w-3.5" />
             AI Bloom · Paid offer · 1-week delivery
           </p>
-          <h1 className="mt-4 max-w-3xl font-display text-4xl font-extrabold tracking-tight text-ink sm:text-5xl leading-tight">
+          <h1 className="headline-lg mt-5 max-w-3xl">
             AI Bloom Starter for Operators
           </h1>
-          <p className="mt-3 text-xl font-semibold text-gem-dark">
+          <p className="mt-3 text-xl font-extrabold text-warhol-magenta">
             AI made simple. Learn. Try. Grow.
           </p>
-          <p className="mt-4 max-w-2xl text-lg text-stone-600 leading-relaxed">
+          <p className="mt-4 max-w-2xl text-lg text-stone-600 leading-relaxed font-medium">
             We set your pricing rates, invoice templates, and a simple AI follow-up script so you
             quote and get paid faster.
           </p>
           <div className="mt-6 flex flex-wrap items-baseline gap-3">
-            <span className="font-display text-4xl font-extrabold text-ink">$497</span>
+            <span className="font-display text-4xl font-extrabold text-warhol-ink">$497</span>
             <span className="text-sm font-semibold text-muted">one-time · delivered in ~7 days</span>
           </div>
           <StarterCtaButtons className="mt-6" />
@@ -121,13 +120,13 @@ export default function StarterPage() {
             Prefer a peek first?{" "}
             <a
               href="/samples/ai-bloom-starter-sample.md"
-              className="font-bold text-gem underline underline-offset-2"
+              className="font-bold text-warhol-magenta underline underline-offset-2"
               download
             >
               Download sample pack
             </a>{" "}
             or jump to{" "}
-            <a href="#sample" className="font-bold text-gem underline underline-offset-2">
+            <a href="#sample" className="font-bold text-warhol-teal underline underline-offset-2">
               sample deliverables
             </a>
             .
@@ -135,9 +134,8 @@ export default function StarterPage() {
         </div>
       </section>
 
-      {/* Who */}
       <section className="container-page py-10 sm:py-12">
-        <h2 className="font-display text-2xl font-extrabold text-ink">Who it’s for</h2>
+        <h2 className="font-display text-2xl font-extrabold text-warhol-ink">Who it’s for</h2>
         <p className="mt-3 max-w-2xl text-stone-600 leading-relaxed">
           Charlotte / underserved operators — residential & commercial cleaners, small contractors,
           HUB-ish and neighborhood businesses who win work by reputation, not by fancy software.
@@ -149,27 +147,32 @@ export default function StarterPage() {
             "Contractors who need cleaner invoices",
             "Operators tired of “figure out AI alone”",
           ].map((t) => (
-            <li key={t} className="card flex items-start gap-2 p-4 text-sm font-semibold text-ink">
-              <Check className="mt-0.5 h-4 w-4 shrink-0 text-gem" />
+            <li
+              key={t}
+              className="flex items-start gap-2 rounded-xl border-2 border-warhol-ink bg-white p-4 text-sm font-semibold text-warhol-ink shadow-[4px_4px_0_var(--warhol-teal)]"
+            >
+              <Check className="mt-0.5 h-4 w-4 shrink-0 text-warhol-teal" />
               {t}
             </li>
           ))}
         </ul>
       </section>
 
-      {/* Included */}
-      <section className="border-y border-border bg-white">
+      <section className="border-y-4 border-warhol-ink bg-white">
         <div className="container-page py-10 sm:py-12">
-          <h2 className="font-display text-2xl font-extrabold text-ink">What’s included</h2>
+          <h2 className="font-display text-2xl font-extrabold text-warhol-ink">What’s included</h2>
           <p className="mt-2 text-stone-600">Concrete deliverables for a one-week turnaround.</p>
           <ul className="mt-6 space-y-4">
             {INCLUDED.map((item, i) => (
-              <li key={item.title} className="card flex gap-4 p-5">
-                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gem text-sm font-extrabold text-white">
+              <li
+                key={item.title}
+                className="flex gap-4 rounded-xl border-2 border-warhol-ink bg-white p-5 shadow-[4px_4px_0_var(--warhol-ink)]"
+              >
+                <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border-2 border-warhol-ink bg-warhol-magenta text-sm font-extrabold text-white">
                   {i + 1}
                 </span>
                 <div>
-                  <h3 className="font-display text-lg font-extrabold text-ink">{item.title}</h3>
+                  <h3 className="font-display text-lg font-extrabold text-warhol-ink">{item.title}</h3>
                   <p className="mt-1 text-sm text-stone-600 leading-relaxed">{item.detail}</p>
                 </div>
               </li>
@@ -178,31 +181,32 @@ export default function StarterPage() {
         </div>
       </section>
 
-      {/* Timeline */}
       <section className="container-page py-10 sm:py-12">
         <div className="flex items-center gap-2">
-          <CalendarCheck className="h-5 w-5 text-gem" />
-          <h2 className="font-display text-2xl font-extrabold text-ink">
+          <CalendarCheck className="h-5 w-5 text-warhol-magenta" />
+          <h2 className="font-display text-2xl font-extrabold text-warhol-ink">
             What you’ll have in 7 days
           </h2>
         </div>
         <ol className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {TIMELINE.map((t) => (
-            <li key={t.day} className="card p-4 border-gem/20">
-              <p className="text-xs font-bold uppercase tracking-wide text-gem">{t.day}</p>
-              <p className="mt-1 font-display font-extrabold text-ink">{t.title}</p>
+            <li
+              key={t.day}
+              className="rounded-xl border-2 border-warhol-ink bg-warhol-cream p-4 shadow-[4px_4px_0_var(--warhol-yellow)]"
+            >
+              <p className="text-xs font-extrabold uppercase tracking-wide text-warhol-magenta">{t.day}</p>
+              <p className="mt-1 font-display font-extrabold text-warhol-ink">{t.title}</p>
               <p className="mt-1 text-sm text-muted leading-relaxed">{t.desc}</p>
             </li>
           ))}
         </ol>
       </section>
 
-      {/* Sample deliverables */}
-      <section id="sample" className="border-y border-border bg-gem-mist/60">
+      <section id="sample" className="border-y-4 border-warhol-ink section-cream">
         <div className="container-page py-10 sm:py-12">
           <div className="flex flex-wrap items-end justify-between gap-3">
             <div>
-              <h2 className="font-display text-2xl font-extrabold text-ink">
+              <h2 className="font-display text-2xl font-extrabold text-warhol-ink">
                 Sample of what you walk away with
               </h2>
               <p className="mt-2 max-w-2xl text-stone-600 leading-relaxed">
@@ -212,7 +216,7 @@ export default function StarterPage() {
             </div>
             <a
               href="/samples/ai-bloom-starter-sample.md"
-              className="btn btn-secondary shrink-0"
+              className="btn-warhol btn-warhol-outline shrink-0"
               download
             >
               <Download className="h-4 w-4" /> Full sample pack
@@ -220,22 +224,21 @@ export default function StarterPage() {
           </div>
 
           <div className="mt-8 grid gap-5 lg:grid-cols-3">
-            {/* Rate card */}
-            <div className="card overflow-hidden">
-              <div className="border-b border-border bg-white px-4 py-3 flex items-center gap-2">
-                <Timer className="h-4 w-4 text-gem" />
-                <h3 className="font-display font-extrabold text-ink text-sm">Example rate card</h3>
+            <div className="overflow-hidden rounded-2xl border-2 border-warhol-ink bg-white shadow-[6px_6px_0_var(--warhol-teal)]">
+              <div className="border-b-2 border-warhol-ink bg-warhol-cream px-4 py-3 flex items-center gap-2">
+                <Timer className="h-4 w-4 text-warhol-teal" />
+                <h3 className="font-display font-extrabold text-warhol-ink text-sm">Example rate card</h3>
               </div>
-              <div className="p-4 text-sm space-y-2 bg-[#fafaf9]">
+              <div className="p-4 text-sm space-y-2 bg-white">
                 <p className="text-xs font-bold uppercase tracking-wide text-muted">
                   Queen City Clean Co. · Residential
                 </p>
-                <div className="rounded-lg border border-border bg-white p-3 space-y-1.5 font-mono text-[13px]">
+                <div className="rounded-lg border-2 border-warhol-ink bg-warhol-cream p-3 space-y-1.5 font-mono text-[13px]">
                   <div className="flex justify-between"><span>Lead tech</span><span>$45/hr</span></div>
                   <div className="flex justify-between"><span>Helper</span><span>$28/hr</span></div>
                   <div className="flex justify-between"><span>Supplies (default)</span><span>8%</span></div>
                   <div className="flex justify-between"><span>Overhead</span><span>18%</span></div>
-                  <div className="flex justify-between border-t border-border pt-1.5 font-bold"><span>Target profit</span><span>22%</span></div>
+                  <div className="flex justify-between border-t-2 border-warhol-ink pt-1.5 font-bold"><span>Target profit</span><span>22%</span></div>
                 </div>
                 <p className="text-xs text-muted leading-relaxed">
                   Saved into Price a job so ballparks match how you bid.
@@ -243,15 +246,14 @@ export default function StarterPage() {
               </div>
             </div>
 
-            {/* Invoice snippet */}
-            <div className="card overflow-hidden">
-              <div className="border-b border-border bg-white px-4 py-3 flex items-center gap-2">
-                <FileText className="h-4 w-4 text-gem" />
-                <h3 className="font-display font-extrabold text-ink text-sm">Example invoice line</h3>
+            <div className="overflow-hidden rounded-2xl border-2 border-warhol-ink bg-white shadow-[6px_6px_0_var(--warhol-magenta)]">
+              <div className="border-b-2 border-warhol-ink bg-warhol-cream px-4 py-3 flex items-center gap-2">
+                <FileText className="h-4 w-4 text-warhol-magenta" />
+                <h3 className="font-display font-extrabold text-warhol-ink text-sm">Example invoice line</h3>
               </div>
-              <div className="p-4 text-sm bg-[#fafaf9]">
-                <div className="invoice-paper !p-4 !shadow-none text-[13px]">
-                  <p className="font-display font-extrabold text-gem-dark">Queen City Clean Co.</p>
+              <div className="p-4 text-sm bg-white">
+                <div className="invoice-paper !p-4 !shadow-none text-[13px] border-2 border-warhol-ink">
+                  <p className="font-display font-extrabold text-warhol-magenta">Queen City Clean Co.</p>
                   <p className="text-xs text-muted mt-0.5">Invoice #1042 · Due Net 14</p>
                   <div className="mt-3 border-t border-border pt-2 space-y-1">
                     <div className="flex justify-between gap-2">
@@ -267,14 +269,13 @@ export default function StarterPage() {
               </div>
             </div>
 
-            {/* Follow-up */}
-            <div className="card overflow-hidden">
-              <div className="border-b border-border bg-white px-4 py-3 flex items-center gap-2">
-                <MessageSquareText className="h-4 w-4 text-gem" />
-                <h3 className="font-display font-extrabold text-ink text-sm">Example follow-up</h3>
+            <div className="overflow-hidden rounded-2xl border-2 border-warhol-ink bg-white shadow-[6px_6px_0_var(--warhol-yellow)]">
+              <div className="border-b-2 border-warhol-ink bg-warhol-cream px-4 py-3 flex items-center gap-2">
+                <MessageSquareText className="h-4 w-4 text-warhol-ink" />
+                <h3 className="font-display font-extrabold text-warhol-ink text-sm">Example follow-up</h3>
               </div>
-              <div className="p-4 text-sm bg-[#fafaf9] space-y-3">
-                <div className="rounded-lg border border-border bg-white p-3 leading-relaxed text-[13px] text-stone-700">
+              <div className="p-4 text-sm bg-white space-y-3">
+                <div className="rounded-lg border-2 border-warhol-ink bg-warhol-cream p-3 leading-relaxed text-[13px] text-stone-700">
                   <p className="text-xs font-bold text-muted mb-1">Quote follow-up (text/email)</p>
                   Hi Jordan — just checking you got the quote for the Plaza Midwood deep clean
                   ($285). Happy to adjust timing if next week works better. — Maya, Queen City Clean
@@ -288,9 +289,8 @@ export default function StarterPage() {
         </div>
       </section>
 
-      {/* What it's not */}
       <section className="container-page py-10 sm:py-12">
-        <h2 className="font-display text-2xl font-extrabold text-ink">What it’s not</h2>
+        <h2 className="font-display text-2xl font-extrabold text-warhol-ink">What it’s not</h2>
         <ul className="mt-4 grid gap-2 sm:grid-cols-2">
           {NOT_THIS.map((t) => (
             <li key={t} className="flex items-start gap-2 text-sm text-stone-600">
@@ -301,53 +301,51 @@ export default function StarterPage() {
         </ul>
       </section>
 
-      {/* Price + form CTA */}
-      <section id="get-started" className="border-y border-border bg-white">
+      <section id="get-started" className="border-y-4 border-warhol-ink bg-white">
         <div className="container-page py-10 sm:py-14 max-w-3xl">
-          <p className="text-xs font-bold uppercase tracking-wide text-gem">Clear price</p>
-          <h2 className="mt-1 font-display text-3xl font-extrabold text-ink">
+          <p className="warhol-eyebrow">Clear price</p>
+          <h2 className="mt-4 font-display text-3xl font-extrabold text-warhol-ink">
             $497 — one time
-            <a href="/pay#starter" className="btn btn-primary mt-4 w-full sm:w-auto">
-              Pay $497 now
-            </a>
           </h2>
+          <a href="/pay#starter" className="btn-warhol btn-warhol-magenta mt-4 inline-flex">
+            Pay $497 now
+          </a>
           <p className="mt-3 text-stone-600 leading-relaxed">
             Setup + deliverables + 30-min call (or Loom) + 30 days email support. Free site tools
             stay free; this is the done-with-you package.
           </p>
           <StarterCtaButtons className="mt-6" />
-          <div className="mt-10 rounded-2xl border-2 border-gem/30 bg-warm p-6 sm:p-8">
-            <h3 className="font-display text-xl font-extrabold text-ink">Request the Starter</h3>
+          <div className="mt-10 rounded-2xl border-2 border-warhol-ink bg-warhol-cream p-6 sm:p-8 shadow-[6px_6px_0_var(--warhol-magenta)]">
+            <h3 className="font-display text-xl font-extrabold text-warhol-ink">Request the Starter</h3>
             <p className="mt-1 text-sm text-muted mb-5">
-              Subject line we watch for: <strong className="text-ink">AI Bloom Starter $497</strong>
+              Subject line we watch for: <strong className="text-warhol-ink">AI Bloom Starter $497</strong>
             </p>
             <StarterInterestForm />
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
       <section className="container-page py-10 sm:py-12 max-w-3xl">
-        <h2 className="font-display text-2xl font-extrabold text-ink">FAQ</h2>
+        <h2 className="font-display text-2xl font-extrabold text-warhol-ink">FAQ</h2>
         <dl className="mt-6 space-y-5">
           {FAQ.map((f) => (
-            <div key={f.q} className="card p-5">
-              <dt className="font-display font-extrabold text-ink">{f.q}</dt>
+            <div key={f.q} className="rounded-xl border-2 border-warhol-ink bg-white p-5 shadow-[4px_4px_0_var(--warhol-ink)]">
+              <dt className="font-display font-extrabold text-warhol-ink">{f.q}</dt>
               <dd className="mt-2 text-sm text-stone-600 leading-relaxed">{f.a}</dd>
             </div>
           ))}
         </dl>
         <p className="mt-8 text-sm text-muted">
           Still exploring?{" "}
-          <Link href="/price" className="font-bold text-gem hover:underline">
+          <Link href="/price" className="font-bold text-warhol-magenta hover:underline">
             Try Price a job free
           </Link>
           {" · "}
-          <Link href="/invoices" className="font-bold text-gem hover:underline">
+          <Link href="/invoices" className="font-bold text-warhol-teal hover:underline">
             Make an invoice
           </Link>
           {" · "}
-          <Link href="/about#connect" className="font-bold text-gem hover:underline inline-flex items-center gap-1">
+          <Link href="/about#connect" className="font-bold text-warhol-magenta hover:underline inline-flex items-center gap-1">
             Connect <ArrowRight className="h-3.5 w-3.5" />
           </Link>
         </p>

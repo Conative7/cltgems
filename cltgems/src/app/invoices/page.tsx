@@ -11,49 +11,56 @@ export const metadata: Metadata = {
 
 export default function InvoicesPage() {
   return (
-    <div className="container-page py-10 sm:py-12">
-      <p className="text-xs font-bold uppercase tracking-wide text-gem">AI Bloom · Invoices</p>
-      <h1 className="mt-1 font-display text-3xl font-extrabold text-ink">Invoice Library</h1>
-      <p className="mt-2 max-w-2xl text-muted leading-relaxed">
-        Eight practical formats. Build as a guest, preview live, download Word (.docx) or PDF, or email/share from your phone.
-        Free useful tier first — no account required. Credits only after a successful download.
-      </p>
-
-      <div className="mt-6 flex flex-wrap gap-3">
-        <Link href="/invoices/builder" className="btn btn-primary">
-          Open builder <ArrowRight className="h-4 w-4" />
-        </Link>
-        <Link href="/invoices/formats" className="btn btn-secondary">
-          Browse all formats
-        </Link>
-      </div>
-
-      <div className="mt-8 grid gap-4 sm:grid-cols-2">
-        <div className="card p-5 flex gap-3">
-          <MonitorSmartphone className="h-5 w-5 text-gem shrink-0 mt-0.5" />
-          <div>
-            <h2 className="font-bold text-ink">Library / shared PC ready</h2>
-            <p className="mt-1 text-sm text-muted leading-relaxed">
-              Drafts stay in this browser only. Use the wipe control on the builder before you walk away.
-            </p>
+    <div>
+      <section className="section-cream border-b-4 border-warhol-ink">
+        <div className="container-page py-10 sm:py-14">
+          <p className="warhol-eyebrow">AI Bloom · Invoices</p>
+          <h1 className="headline-lg mt-5">Invoice Library</h1>
+          <p className="mt-4 max-w-2xl text-lg text-stone-600 leading-relaxed font-medium">
+            Eight practical formats. Build as a guest, preview live, download Word (.docx) or PDF, or email/share from your phone.
+            Free useful tier first — no account required. Credits only after a successful download.
+          </p>
+          <div className="mt-6 flex flex-col sm:flex-row flex-wrap gap-3">
+            <Link href="/invoices/builder" className="btn-warhol btn-warhol-magenta">
+              Open builder <ArrowRight className="h-4 w-4" />
+            </Link>
+            <Link href="/invoices/formats" className="btn-warhol btn-warhol-outline">
+              Browse all formats
+            </Link>
           </div>
         </div>
-        <div className="card p-5 flex gap-3">
-          <Shield className="h-5 w-5 text-gem shrink-0 mt-0.5" />
-          <div>
-            <h2 className="font-bold text-ink">Getting paid matters</h2>
-            <p className="mt-1 text-sm text-muted leading-relaxed">
-              Pair clean invoices with the directory and grants pointers — certification without cashflow is half the story.
-            </p>
+      </section>
+
+      <div className="container-page py-10 sm:py-12">
+        <div className="grid gap-4 sm:grid-cols-2">
+          <div className="warhol-card warhol-card-teal !p-5 flex gap-3">
+            <MonitorSmartphone className="h-5 w-5 text-warhol-teal shrink-0 mt-0.5" />
+            <div>
+              <h2 className="font-bold text-warhol-ink">Library / shared PC ready</h2>
+              <p className="mt-1 text-sm text-muted leading-relaxed">
+                Drafts stay in this browser only. Use the wipe control on the builder before you walk away.
+              </p>
+            </div>
+          </div>
+          <div className="warhol-card warhol-card-yellow !p-5 flex gap-3">
+            <Shield className="h-5 w-5 text-warhol-ink shrink-0 mt-0.5" />
+            <div>
+              <h2 className="font-bold text-warhol-ink">Getting paid matters</h2>
+              <p className="mt-1 text-sm text-muted leading-relaxed">
+                Pair clean invoices with the directory and data intel — getting found without cashflow is half the story.
+              </p>
+            </div>
           </div>
         </div>
-      </div>
 
-      <h2 className="mt-12 font-display text-xl font-bold text-ink">Formats ({INVOICE_FORMATS.length})</h2>
-      <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-        {INVOICE_FORMATS.map((f) => (
-          <FormatCard key={f.id} format={f} />
-        ))}
+        <h2 className="mt-12 font-display text-xl font-extrabold text-warhol-ink">
+          Formats ({INVOICE_FORMATS.length})
+        </h2>
+        <div className="mt-4 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {INVOICE_FORMATS.map((f) => (
+            <FormatCard key={f.id} format={f} />
+          ))}
+        </div>
       </div>
     </div>
   );

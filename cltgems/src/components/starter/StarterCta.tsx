@@ -26,12 +26,12 @@ export function StarterCtaButtons({ className = "" }: { className?: string }) {
 
   return (
     <div className={"flex flex-col sm:flex-row gap-3 " + className}>
-      <a href={href} target="_blank" rel="noopener noreferrer" className="btn btn-primary text-base px-6 py-3">
+      <a href={href} target="_blank" rel="noopener noreferrer" className="btn-warhol btn-warhol-magenta text-base">
         Get the Starter — $497 <Send className="h-4 w-4" />
       </a>
       <a
         href={`mailto:${INBOX}?subject=${encodeURIComponent(SUBJECT)}`}
-        className="btn btn-secondary text-base px-6 py-3"
+        className="btn-warhol btn-warhol-outline text-base"
       >
         <Mail className="h-4 w-4" /> Email {INBOX}
       </a>
@@ -93,8 +93,8 @@ export function StarterInterestForm() {
 
   if (status === "sent") {
     return (
-      <div className="rounded-xl border border-gem/30 bg-gem-mist p-5">
-        <p className="font-display font-extrabold text-gem-dark text-lg">Got it — thank you!</p>
+      <div className="rounded-xl border-2 border-warhol-ink bg-warhol-cream p-5 shadow-[4px_4px_0_var(--warhol-teal)]">
+        <p className="font-display font-extrabold text-warhol-ink text-lg">Got it — thank you!</p>
         <p className="mt-1 text-sm text-stone-700 leading-relaxed">
           We’ll reply at your email within 1 business day to confirm payment and schedule your
           setup call (or send a Loom if you prefer async).
